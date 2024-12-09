@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Guest</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-primary text-white py-2">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white fw-bold" href="#">HOTELHUB</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link text-white" href="../html/dashboard.html">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="#">Room List</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="../html/createGuest.html">Guest List</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="#">Reservation List</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="../html/createRoom.html">Create Room</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="../html/createGuest.html">Create Guest</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="../html/CreateReservation.html">Create Reservation</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="#">Profile</a></li>
+              <li class="nav-item"><a class="nav-link text-white" href="../html/login.html">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container my-5">
+    <h2 class="text-primary text-center mb-4">Create Guest</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-sm p-4">
+          <form>
+            <!-- Full Name -->
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="fullName" placeholder="Enter full name" required>
+            </div>
+
+            <!-- Email Address -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email address" required>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" placeholder="Enter phone number" required>
+            </div>
+
+            <!-- Address -->
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" placeholder="Enter address" required>
+            </div>
+
+            <!-- Guest Type -->
+            <div class="mb-3">
+              <label for="guestType" class="form-label">Guest Type</label>
+              <select id="guestType" class="form-select" required>
+                <option value="" disabled selected>Select guest type</option>
+                <option value="individual">Individual</option>
+                <option value="corporate">Corporate</option>
+                <option value="vip">VIP</option>
+              </select>
+            </div>
+
+            <!-- Additional Notes -->
+            <div class="mb-3">
+              <label for="notes" class="form-label">Additional Notes</label>
+              <textarea id="notes" class="form-control" rows="3" placeholder="Add any notes"></textarea>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary">Create Guest</button>
+              <a href="dashboard.html" class="btn btn-secondary">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-3 bg-secondary text-white fixed-bottom">
+    © created by <a href="#" class="text-white text-decoration-none fw-bold">python</a>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
