@@ -1,0 +1,58 @@
+body {
+    background-color: #f8f9fa;
+    padding-bottom: 60px; /* Add padding to avoid content being hidden behind the footer */
+  }
+  
+  header {
+    border-bottom: 2px solid #e9ecef;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .card i {
+    font-size: 2rem;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  .navbar-nav .nav-link {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    text-transform: capitalize;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  .navbar-toggler {
+    border: none;
+  }
+  
+  .navbar-toggler-icon {
+    background-color: white;
+  }
+  
+form label {
+    font-weight: bold;
+  }
+  .card {
+    border-radius: 10px;
+    border: none;
+  }
+  /* Fixed footer at the bottom of the screen */
+footer.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  
+  
+  
+  
