@@ -1,0 +1,438 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sona Template">
+    <meta name="keywords" content="Sona, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sona | Mẫu</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Section Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="canvas-open">
+        <i class="icon_menu"></i>
+    </div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="icon_close"></i>
+        </div>
+        <div class="search-icon search-switch">
+            <i class="icon_search"></i>
+        </div>
+        <div class="header-configure-area">
+            <div class="language-option">
+                <img src="{% static 'img/flag.jpg' %}" alt="">
+                <span>EN <i class="fa fa-angle-down"></i></span>
+                <div class="flag-dropdown">
+                    <ul>
+                        <li><a href="#">Zi</a></li>
+                        <li><a href="#">Fr</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="{% url 'booking' %}" class="bk-btn">Đặt Phòng Ngay</a>
+        </div>
+        <nav class="mainmenu mobile-menu">
+            <ul>
+                <li class="active"><a href="{% url 'home' %}">Trang Chủ</a></li>
+                <li><a href="{% url 'rooms' %}">Phòng</a></li>
+                <li><a href="{% url 'about_us' %}">Giới Thiệu</a></li>
+                <li><a href="{% url 'pages' %}">Trang</a>
+                    <ul class="dropdown">
+                        <li><a href="{% url 'room_details' %}">Chi Tiết Phòng</a></li>
+                        <li><a href="{% url 'blog_details' %}">Chi Tiết Blog</a></li>
+                        <li><a href="#">Phòng Gia Đình</a></li>
+                        <li><a href="#">Phòng Cao Cấp</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'blog' %}">Tin Tức</a></li>
+                <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="top-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-tripadvisor"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        <ul class="top-widget">
+            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+            <li><i class="fa fa-envelope"></i> info.colorlib@gmail.com</li>
+        </ul>
+    </div>
+    <!-- Offcanvas Menu Section End -->
+
+    <!-- Header Section Begin -->
+    <header class="header-section header-normal">
+        <div class="top-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="tn-left">
+                            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+                            <li><i class="fa fa-envelope"></i> info.colorlib@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tn-right">
+                            <div class="top-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                            <a href="{% url 'booking' %}" class="bk-btn">Đặt Phòng Ngay</a>
+                            <div class="language-option">
+                                <img src="{% static 'img/flag.jpg' %}" alt="">
+                                <span>EN <i class="fa fa-angle-down"></i></span>
+                                <div class="flag-dropdown">
+                                    <ul>
+                                        <li><a href="#">Zi</a></li>
+                                        <li><a href="#">Fr</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo">
+                            <a href="{% url 'home' %}">
+                                <img src="{% static 'img/logo.png' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="nav-menu">
+                            <nav class="mainmenu">
+                                <ul>
+                                    <li><a href="{% url 'home' %}">Trang Chủ</a></li>
+                                    <li class="active"><a href="{% url 'rooms' %}">Phòng</a></li>
+                                    <li><a href="{% url 'about_us' %}">Giới Thiệu</a></li>
+                                    <li><a href="{% url 'pages' %}">Trang</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'room_details' %}">Chi Tiết Phòng</a></li>
+                                            <li><a href="{% url 'blog_details' %}">Chi Tiết Blog</a></li>
+                                            <li><a href="#">Phòng Gia Đình</a></li>
+                                            <li><a href="#">Phòng Cao Cấp</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'blog' %}">Tin Tức</a></li>
+                                    <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
+                                </ul>
+                            </nav>
+                            <div class="nav-right search-switch">
+                                <i class="icon_search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Phòng của Chúng Tôi</h2>
+                        <div class="bt-option">
+                            <a href="{% url 'home' %}">Trang Chủ</a>
+                            <span>Phòng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Room Details Section Begin -->
+    <section class="room-details-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="room-details-item">
+                        <img src="{% static 'img/room/room-details.jpg' %}" alt="">
+                        <div class="rd-text">
+                            <div class="rd-title">
+                                <h3>Phòng King Cao Cấp</h3>
+                                <div class="rdt-right">
+                                    <div class="rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star-half_alt"></i>
+                                    </div>
+                                    <a href="{% url 'booking' %}">Đặt Phòng Ngay</a>
+                                </div>
+                            </div>
+                            <h2>159$<span>/Đêm</span></h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Kích thước:</td>
+                                        <td>30 ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Sức chứa:</td>
+                                        <td>Tối đa 5 người</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Giường:</td>
+                                        <td>Giường King</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Dịch vụ:</td>
+                                        <td>Wifi, Tivi, Phòng tắm,...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="f-para">Motorhome hay Trailer, đó là câu hỏi dành cho bạn. Dưới đây là một số
+                                ưu điểm và nhược điểm của cả hai, để bạn có thể tự tin khi mua một chiếc RV.
+                                Khi so sánh Rvs, nên mua motorhome hay fifth wheeler? Các ưu và nhược điểm của cả hai
+                                được nghiên cứu để bạn có thể lựa chọn một cách khôn ngoan khi mua một chiếc RV.
+                                Sở hữu một motorhome hay fifth wheel là một thành tựu trong đời. Nó có thể giống như
+                                việc đi du lịch với nhà khi bạn khám phá các địa điểm khác nhau của đất nước tuyệt vời
+                                của chúng ta, Mỹ.</p>
+                            <p>Hai loại xe giải trí phổ biến là motorized và towable.
+                                Towable rvs là các travel trailers và fifth wheel. Travel trailer hoặc fifth wheel RV
+                                có điểm thu hút là có thể kéo bởi một chiếc pickup hoặc ô tô, do đó tạo sự linh hoạt
+                                khi bạn đã có phương tiện di chuyển khi bạn đậu xe tại khu cắm trại.</p>
+                        </div>
+                    </div>
+                    <div class="rd-reviews">
+                        <h4>Đánh Giá</h4>
+                        <div class="review-item">
+                            <div class="ri-pic">
+                                <img src="{% static 'img/room/avatar/avatar-1.jpg' %}" alt="">
+                            </div>
+                            <div class="ri-text">
+                                <span>27 Th8 2019</span>
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star-half_alt"></i>
+                                </div>
+                                <h5>Brandon Kelley</h5>
+                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                    adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
+                                    magnam.</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="ri-pic">
+                                <img src="{% static 'img/room/avatar/avatar-2.jpg' %}" alt="">
+                            </div>
+                            <div class="ri-text">
+                                <span>27 Th8 2019</span>
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star-half_alt"></i>
+                                </div>
+                                <h5>Brandon Kelley</h5>
+                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                    adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
+                                    magnam.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-add">
+                        <h4>Thêm Đánh Giá</h4>
+                        <form action="#" class="ra-form">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Tên*">
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="email" placeholder="Email*">
+                                </div>
+                                <div class="col-lg-12">
+                                    <div>
+                                        <h5>Đánh Giá Của Bạn:</h5>
+                                        <div class="rating">
+                                            <i class="icon_star"></i>
+                                            <i class="icon_star"></i>
+                                            <i class="icon_star"></i>
+                                            <i class="icon_star"></i>
+                                            <i class="icon_star-half_alt"></i>
+                                        </div>
+                                    </div>
+                                    <textarea placeholder="Đánh Giá Của Bạn"></textarea>
+                                    <button type="submit">Gửi Ngay</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="room-booking">
+                        <h3>Đặt Phòng của Bạn</h3>
+                        <form action="#">
+                            <div class="check-date">
+                                <label for="date-in">Nhận Phòng:</label>
+                                <input type="text" class="date-input" id="date-in">
+                                <i class="icon_calendar"></i>
+                            </div>
+                            <div class="check-date">
+                                <label for="date-out">Trả Phòng:</label>
+                                <input type="text" class="date-input" id="date-out">
+                                <i class="icon_calendar"></i>
+                            </div>
+                            <div class="select-option">
+                                <label for="guest">Khách:</label>
+                                <select id="guest">
+                                    <option value="">3 Người Lớn</option>
+                                </select>
+                            </div>
+                            <div class="select-option">
+                                <label for="room">Phòng:</label>
+                                <select id="room">
+                                    <option value="">1 Phòng</option>
+                                </select>
+                            </div>
+                            <button type="submit">Kiểm Tra Tình Trạng</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Room Details Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-text">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="ft-about">
+                            <div class="logo">
+                                <a href="#">
+                                    <img src="{% static 'img/footer-logo.png' %}" alt="">
+                                </a>
+                            </div>
+                            <p>Chúng tôi truyền cảm hứng và tiếp cận hàng triệu du khách<br /> trên 90 trang web địa phương</p>
+                            <div class="fa-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-contact">
+                            <h6>Liên Hệ Với Chúng Tôi</h6>
+                            <ul>
+                                <li>(12) 345 67890</li>
+                                <li>info.colorlib@gmail.com</li>
+                                <li>856 Cordia Extension Apt. 356, Lake, Hoa Kỳ</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-newslatter">
+                            <h6>Tin Mới Nhất</h6>
+                            <p>Nhận các cập nhật và ưu đãi mới nhất.</p>
+                            <form action="#" class="fn-form">
+                                <input type="email" placeholder="Email">
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-option">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <ul>
+                            <li><a href="#">Liên Hệ</a></li>
+                            <li><a href="#">Điều khoản sử dụng</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+                            <li><a href="#">Chính sách Môi trường</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="co-text">
+                            <p>
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tất cả các quyền được bảo lưu | 
+                                Mẫu này được tạo với <i class="fa fa-heart" aria-hidden="true"></i> bởi 
+                                <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Tìm kiếm tại đây.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

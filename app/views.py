@@ -1,64 +1,67 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from .models import *
+from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, logout
 from django.contrib import messages
 
-# Trang chủ
-def home(request):
+# Create your views here.
+def index(request):
     return render(request, 'index.html')
 
-# Trang giới thiệu
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'about-us.html')
 
-# Trang liên hệ
 def contact(request):
     return render(request, 'contact.html')
 
-# Trang sự kiện
-def events(request):
-    return render(request, 'events.html')
+def blog(request):
+    return render(request, 'blog.html')
 
-# Đăng nhập người dùng
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-        else:
-            messages.error(request, 'Tên tài khoản hoặc mật khẩu không đúng!')
-            return render(request, 'login.html', {'invalid': 'Tên tài khoản hoặc mật khẩu không đúng!'})
-    return render(request, 'login.html')
+def blogdetail(request):
+    return render(request, 'blog-details.html')
 
-# Trang phòng
+def main(request):
+    return render(request, 'main.html')
+
 def rooms(request):
-    return render(request, 'rooms.html')
+    room = Room.objects.all()
+    context = {'room':room}
+    return render(request, 'rooms.html',context)
 
-# Đăng ký người dùng
+def roomdetail(request):
+    return render(request, 'room-details.html')
+
 def signup(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Tài khoản mới đã được tạo: {username}')
+            login(request, user)
+            return redirect('login')
+        else:
+            for msg in form.error_messages:
+                messages.error(request, f'{msg}: {form.error_messages[msg]}')
+    else:
+        form = UserCreationForm
+        return render(request, 'signup.html', {'form':form})
 
-        if password != confirm_password:
-            messages.error(request, 'Mật khẩu không khớp!')
-            return redirect('signup')
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('main')
+        else:
+            for msg in form.error_messages:
+                messages.error(request, f'{msg}: {form.error_messages[msg]}')
+    else:
+        form = AuthenticationForm
+        return render(request, 'login.html', {'form':form})
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'Tên tài khoản đã tồn tại!')
-            return redirect('signup')
-
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'Email đã được sử dụng!')
-            return redirect('signup')
-
-        user = User.objects.create_user(username=username, email=email, password=password)
-        user.save()
-        messages.success(request, 'Đăng ký thành công!')
-        return redirect('login')
-    return render(request, 'signup.html')
+def logout(request):
+    logout(request)
+    return redirect('home')
