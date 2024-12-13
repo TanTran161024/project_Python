@@ -9,6 +9,9 @@ from django.contrib import messages
 def index(request):
     return render(request, 'index.html')
 
+def pages(request):
+    return render(request,'pages.html')
+
 def about(request):
     return render(request, 'about-us.html')
 
@@ -21,13 +24,14 @@ def blog(request):
 def blogdetail(request):
     return render(request, 'blog-details.html')
 
+def booking(request):
+    return render(request, 'booking.html')
+
 def main(request):
     return render(request, 'main.html')
 
 def rooms(request):
-    room = Room.objects.all()
-    context = {'room':room}
-    return render(request, 'rooms.html',context)
+    return render(request, 'rooms.html')
 
 def roomdetail(request):
     return render(request, 'room-details.html')

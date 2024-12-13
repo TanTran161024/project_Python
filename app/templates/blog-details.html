@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -14,16 +16,16 @@
     <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
@@ -61,11 +63,11 @@
             <ul>
                 <li class="active"><a href="{% url 'index' %}">Trang Chủ</a></li>
                 <li><a href="{% url 'rooms' %}">Phòng</a></li>
-                <li><a href="{% url 'about_us' %}">Về Chúng Tôi</a></li>
+                <li><a href="{% url 'about-us' %}">Về Chúng Tôi</a></li>
                 <li><a href="{% url 'pages' %}">Trang</a>
                     <ul class="dropdown">
-                        <li><a href="{% url 'room_details' %}">Chi Tiết Phòng</a></li>
-                        <li><a href="{% url 'blog_details' %}">Chi Tiết Blog</a></li>
+                        <li><a href="{% url 'room-details' %}">Chi Tiết Phòng</a></li>
+                        <li><a href="{% url 'blog-details' %}">Chi Tiết Blog</a></li>
                         <li><a href="#">Phòng Gia Đình</a></li>
                         <li><a href="#">Phòng Cao Cấp</a></li>
                     </ul>
@@ -140,11 +142,11 @@
                                 <ul>
                                     <li><a href="{% url 'index' %}">Trang Chủ</a></li>
                                     <li><a href="{% url 'rooms' %}">Phòng</a></li>
-                                    <li><a href="{% url 'about_us' %}">Về Chúng Tôi</a></li>
+                                    <li><a href="{% url 'about-us' %}">Về Chúng Tôi</a></li>
                                     <li><a href="{% url 'pages' %}">Trang</a>
                                         <ul class="dropdown">
-                                            <li><a href="{% url 'room_details' %}">Chi Tiết Phòng</a></li>
-                                            <li><a href="{% url 'blog_details' %}">Chi Tiết Blog</a></li>
+                                            <li><a href="{% url 'room-details' %}">Chi Tiết Phòng</a></li>
+                                            <li><a href="{% url 'blog-details' %}">Chi Tiết Blog</a></li>
                                             <li><a href="#">Phòng Gia Đình</a></li>
                                             <li><a href="#">Phòng Cao Cấp</a></li>
                                         </ul>

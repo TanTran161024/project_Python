@@ -60,13 +60,13 @@
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li class="active"><a href="{% url 'home' %}">Trang Chủ</a></li>
+                <li class="active"><a href="{% url 'index' %}">Trang Chủ</a></li>
                 <li><a href="{% url 'rooms' %}">Phòng</a></li>
-                <li><a href="{% url 'about_us' %}">Giới Thiệu</a></li>
+                <li><a href="{% url 'about-us' %}">Giới Thiệu</a></li>
                 <li><a href="{% url 'pages' %}">Trang</a>
                     <ul class="dropdown">
-                        <li><a href="{% url 'room_details' %}">Chi Tiết Phòng</a></li>
-                        <li><a href="{% url 'blog_details' %}">Chi Tiết Blog</a></li>
+                        <li><a href="{% url 'room-details' %}">Chi Tiết Phòng</a></li>
+                        <li><a href="{% url 'blog-details' %}">Chi Tiết Blog</a></li>
                         <li><a href="#">Phòng Gia Đình</a></li>
                         <li><a href="#">Phòng Cao Cấp</a></li>
                     </ul>
@@ -130,7 +130,7 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <div class="logo">
-                            <a href="{% url 'home' %}">
+                            <a href="{% url 'index' %}">
                                 <img src="{% static 'img/logo.png' %}" alt="">
                             </a>
                         </div>
@@ -139,13 +139,13 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li><a href="{% url 'home' %}">Trang Chủ</a></li>
+                                    <li><a href="{% url 'index' %}">Trang Chủ</a></li>
                                     <li class="active"><a href="{% url 'rooms' %}">Phòng</a></li>
-                                    <li><a href="{% url 'about_us' %}">Giới Thiệu</a></li>
+                                    <li><a href="{% url 'about-us' %}">Giới Thiệu</a></li>
                                     <li><a href="{% url 'pages' %}">Trang</a>
                                         <ul class="dropdown">
-                                            <li><a href="{% url 'room_details' %}">Chi Tiết Phòng</a></li>
-                                            <li><a href="{% url 'blog_details' %}">Chi Tiết Blog</a></li>
+                                            <li><a href="{% url 'room-details' %}">Chi Tiết Phòng</a></li>
+                                            <li><a href="{% url 'blog-details' %}">Chi Tiết Blog</a></li>
                                             <li><a href="#">Phòng Gia Đình</a></li>
                                             <li><a href="#">Phòng Cao Cấp</a></li>
                                         </ul>
@@ -173,7 +173,7 @@
                     <div class="breadcrumb-text">
                         <h2>Phòng của Chúng Tôi</h2>
                         <div class="bt-option">
-                            <a href="{% url 'home' %}">Trang Chủ</a>
+                            <a href="{% url 'index' %}">Trang Chủ</a>
                             <span>Phòng</span>
                         </div>
                     </div>
