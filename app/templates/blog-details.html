@@ -1,0 +1,411 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Mẫu Sona">
+    <meta name="keywords" content="Sona, unica, sáng tạo, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sona | Mẫu</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Các Tệp Css -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <!-- Tiền xử lý Trang -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Phần Mục Menu Offcanvas -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="canvas-open">
+        <i class="icon_menu"></i>
+    </div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="icon_close"></i>
+        </div>
+        <div class="search-icon search-switch">
+            <i class="icon_search"></i>
+        </div>
+        <div class="header-configure-area">
+            <div class="language-option">
+                <img src="{% static 'img/flag.jpg' %}" alt="">
+                <span>EN <i class="fa fa-angle-down"></i></span>
+                <div class="flag-dropdown">
+                    <ul>
+                        <li><a href="#">Zi</a></li>
+                        <li><a href="#">Fr</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="{% url 'booking' %}" class="bk-btn">Đặt Phòng</a>
+        </div>
+        <nav class="mainmenu mobile-menu">
+            <ul>
+                <li class="active"><a href="{% url 'index' %}">Trang Chủ</a></li>
+                <li><a href="{% url 'rooms' %}">Phòng</a></li>
+                <li><a href="{% url 'about-us' %}">Về Chúng Tôi</a></li>
+                <li><a href="{% url 'blog-details' %}">Blog</a></li>
+                <li><a href="{% url 'blog' %}">Tin Tức</a></li>
+                <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="top-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-tripadvisor"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        <ul class="top-widget">
+            <li><i class="fa fa-phone"></i> 190067890</li>
+            <li><i class="fa fa-envelope"></i> Hotel@gmail.com</li>
+        </ul>
+    </div>
+    <!-- Kết Thúc Phần Mục Menu Offcanvas -->
+
+    <!-- Phần Header -->
+    <header class="header-section">
+        <div class="top-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="tn-left">
+                            <li><i class="fa fa-phone"></i> 190067890</li>
+                            <li><i class="fa fa-envelope"></i> Hotel@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tn-right">
+                            <div class="top-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                            <a href="{% url 'login' %}" class="bk-btn">đăng nhập</a>
+                            <a href="{% url 'signup' %}" class="bk-btn">Đăng kí</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo">
+                            <a href="{% url 'index' %}">
+                                <img src="{% static 'img/logo.png' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="nav-menu">
+                            <nav class="mainmenu">
+                                <ul>
+                                    <li><a href="{% url 'index' %}">Trang Chủ</a></li>
+                                    <li><a href="{% url 'rooms' %}">Phòng</a></li>
+                                    <li><a href="{% url 'about-us' %}">Về Chúng Tôi</a></li>
+                                    <li><a href="{% url 'blog-details' %}">Blog</a></li>
+                                    <li class="active"><a href="{% url 'blog' %}">Tin Tức</a></li>
+                                    <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
+                                </ul>
+                            </nav>
+                            <div class="nav-right search-switch">
+                                <i class="icon_search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Kết Thúc Phần Header -->
+
+    <!-- Phần Hero Chi Tiết Blog -->
+    <section class="blog-details-hero set-bg" data-setbg="{% static 'img/blog/blog-details/blog-details-hero.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="bd-hero-text">
+                        <span>Du lịch và Cắm trại</span>
+                        <h2>Cơ quan CDC Cảnh báo sức khỏe cho Du khách đến SaPa từ Panxipang</h2>
+                        <ul>
+                            <li class="b-time"><i class="icon_clock_alt"></i> 12 Tháng Mười Hai, 2024</li>
+                            <li><i class="icon_profile"></i> TH-TrueMilk</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Kết Thúc Phần Hero Chi Tiết Blog -->
+
+    <!-- Phần Chi Tiết Blog -->
+    <section class="blog-details-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="blog-details-text">
+                        <div class="bd-title">
+                            <p>Suy nghĩ về du lịch phiêu lưu nước ngoài? Bạn đã nghĩ đến những nơi tốt nhất để đi khi nói đến du lịch phiêu lưu nước ngoài chưa? Nepal là một trong những nơi phổ biến nhất, khi bạn đến thăm đất nước kỳ diệu này, bạn sẽ có những cuộc phiêu lưu tuyệt vời ngay tại cửa nhà bạn. Chỉ có du lịch phiêu lưu nước ngoài ở Nepal mới mang đến cho bạn những cơ hội như vậy, vì vậy nếu điều này chưa có trong danh sách những nơi có thể đến, thì bây giờ là lúc nên thêm nó vào!</p>
+                            <p>Ở Nepal, du lịch phiêu lưu nước ngoài của bạn sẽ thật hấp dẫn. Bạn sẽ được ngắm nhìn dãy núi Himalaya và trải nghiệm tất cả những gì văn hóa phong phú của người Nepal có thể mang lại. Họ là một dân tộc tuyệt vời, đã giữ gìn văn hóa và niềm tin của mình lâu hơn hầu hết các quốc gia khác. Khi du lịch phiêu lưu nước ngoài đưa bạn đến Nepal, bạn sẽ có cơ hội chiêm ngưỡng tất cả các hồ và rừng độc đáo, bạn thậm chí có thể dành nhiều ngày hoặc tuần cắm trại trong rừng với một hướng dẫn viên chuyên nghiệp. Và những thác nước ở Nepal thật đẹp đến mức không thể tin được, bạn sẽ không bao giờ thấy gì đẹp hơn trong đời khi đến các thác nước này! Đây chắc chắn nên nằm trong danh sách điểm đến du lịch phiêu lưu nước ngoài của bạn!</p>
+                        </div>
+                        <div class="bd-pic">
+                            <div class="bp-item">
+                                <img src="{% static 'img/blog/blog-details/blog-details-1.jpg' %}" alt="">
+                            </div>
+                            <div class="bp-item">
+                                <img src="{% static 'img/blog/blog-details/blog-details-2.jpg' %}" alt="">
+                            </div>
+                            <div class="bp-item">
+                                <img src="{% static 'img/blog/blog-details/blog-details-3.jpg' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="bd-more-text">
+                            <div class="bm-item">
+                                <h4>Nếu bạn sống ở Thành phố New York</h4>
+                                <p>Bạn biết tất cả về giao thông ở đó. Đi đến các nơi thường gần như không thể, ngay cả với hàng triệu chiếc taxi vàng. Nếu bạn giống tôi, bạn thường ghen tỵ với những chiếc limousine bóng bẩy với tài xế chuyên nghiệp và ước mình có thể ngồi trong một chiếc. Thật vậy, bạn có thể. Dịch vụ limo New York rẻ hơn bạn nghĩ nhiều, dù là cho việc đưa đón sân bay Newark, sân bay LaGuardia, hay để lái đến bất cứ nơi nào bạn muốn.</p>
+                            </div>
+                            <div class="bm-item">
+                                <h4>Mỗi khi tôi bắt một chiếc taxi ở New York City</h4>
+                                <p>Tôi hy vọng mình may mắn được một chiếc vừa phải và tài xế thực sự nói tiếng Anh. Tôi đã trải qua nhiều khoảnh khắc lo lắng tự hỏi liệu mình có đến được điểm đến hay không. Hoặc liệu có bị trục lợi hay không. Ngay cả khi mọi thứ suôn sẻ, tôi không thể nhớ nhiều chuyến đi trong taxi New York rất dễ chịu. Và với giá cả tăng cao như bây giờ, việc sử dụng limo càng hợp lý hơn.</p>
+                            </div>
+                        </div>
+                        <div class="tag-share">
+                            <div class="tags">
+                                <a href="#">Du lịch</a>
+                                <a href="#">Cắm trại</a>
+                                <a href="#">Sự kiện</a>
+                            </div>
+                            <div class="social-share">
+                                <span>Chia sẻ:</span>
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            </div>
+                        </div>
+                        <div class="comment-option">
+                            <h4>2 Bình Luận</h4>
+                            <div class="single-comment-item first-comment">
+                                <div class="sc-author">
+                                    <img src="{% static 'img/blog/blog-details/avatar/avatar-1.jpg' %}" alt="">
+                                </div>
+                                <div class="sc-text">
+                                    <span>27 Tháng Tám, 2019</span>
+                                    <h5>Brandon Kelley</h5>
+                                    <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et
+                                        dolore magnam.</p>
+                                    <a href="#" class="comment-btn">Thích</a>
+                                    <a href="#" class="comment-btn">Trả lời</a>
+                                </div>
+                            </div>
+                            <div class="single-comment-item reply-comment">
+                                <div class="sc-author">
+                                    <img src="{% static 'img/blog/blog-details/avatar/avatar-2.jpg' %}" alt="">
+                                </div>
+                                <div class="sc-text">
+                                    <span>27 Tháng Tám, 2019</span>
+                                    <h5>Brandon Kelley</h5>
+                                    <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et
+                                        dolore magnam.</p>
+                                    <a href="#" class="comment-btn like-btn">Thích</a>
+                                    <a href="#" class="comment-btn reply-btn">Trả lời</a>
+                                </div>
+                            </div>
+                            <div class="single-comment-item second-comment ">
+                                <div class="sc-author">
+                                    <img src="{% static 'img/blog/blog-details/avatar/avatar-3.jpg' %}" alt="">
+                                </div>
+                                <div class="sc-text">
+                                    <span>27 Tháng Tám, 2019</span>
+                                    <h5>Brandon Kelley</h5>
+                                    <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et
+                                        dolore magnam.</p>
+                                    <a href="#" class="comment-btn">Thích</a>
+                                    <a href="#" class="comment-btn">Trả lời</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="leave-comment">
+                            <h4>Để lại Bình Luận</h4>
+                            <form action="#" class="comment-form">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="text" placeholder="Tên">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" placeholder="Email">
+                                    </div>
+                                    <div class="col-lg-12 text-center">
+                                        <input type="text" placeholder="Website">
+                                        <textarea placeholder="Tin nhắn"></textarea>
+                                        <button type="submit" class="site-btn">Gửi Tin Nhắn</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Kết Thúc Phần Chi Tiết Blog -->
+
+    <!-- Phần Blog Được Đề Xuất -->
+    <section class="recommend-blog-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Được Đề Xuất</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="blog-item set-bg" data-setbg="{% static 'img/blog/blog-1.jpg' %}">
+                        <div class="bi-text">
+                            <span class="b-tag">Du lịch</span>
+                            <h4><a href="#">Tremblant Ở Canada</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 15 Tháng Tư, 2019</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-item set-bg" data-setbg="{% static 'img/blog/blog-2.jpg' %}">
+                        <div class="bi-text">
+                            <span class="b-tag">Cắm trại</span>
+                            <h4><a href="#">Lựa Chọn Khu Cắm Trại Thụ Động</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 15 Tháng Tư, 2019</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-item set-bg" data-setbg="{% static 'img/blog/blog-3.jpg' %}">
+                        <div class="bi-text">
+                            <span class="b-tag">Sự kiện</span>
+                            <h4><a href="#">Hẻm Núi Đồng</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 21 Tháng Tư, 2019</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Kết Thúc Phần Blog Được Đề Xuất -->
+
+    <!-- Phần Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-text">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="ft-about">
+                            <div class="logo">
+                                <a href="#">
+                                    <img src="{% static 'img/footer-logo.png' %}" alt="">
+                                </a>
+                            </div>
+                            <p>Chúng tôi truyền cảm hứng và tiếp cận hàng triệu du khách<br /> trên 90 trang web địa phương</p>
+                            <div class="fa-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-contact">
+                            <h6>Liên Hệ Với Chúng Tôi</h6>
+                            <ul>
+                                <li>(12) 345 67890</li>
+                                <li>info.colorlib@gmail.com</li>
+                                <li>856 Phường Cordia Extension, Tầng 356, Hồ, Hoa Kỳ</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-newslatter">
+                            <h6>Tin Tức Mới Nhất</h6>
+                            <p>Nhận các cập nhật và ưu đãi mới nhất.</p>
+                            <form action="#" class="fn-form">
+                                <input type="text" placeholder="Email">
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-option">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <ul>
+                            <li><a href="#">Liên Hệ</a></li>
+                            <li><a href="#">Điều khoản sử dụng</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+                            <li><a href="#">Chính sách Môi trường</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="co-text"><p>Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> Tất cả các quyền đều được bảo lưu | Mẫu này được tạo với <i class="fa fa-heart" aria-hidden="true"></i> bởi <a href="https://colorlib.com" target="_blank">TH-TrueMilk</a></p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Kết Thúc Phần Footer -->
+
+    <!-- Mô Hình Tìm Kiếm -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Tìm kiếm ở đây.....">
+            </form>
+        </div>
+    </div>
+    <!-- Kết Thúc Mô Hình Tìm Kiếm -->
+
+    <!-- Các Plugin Js -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
