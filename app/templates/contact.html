@@ -63,14 +63,7 @@
                 <li class="active"><a href="{% url 'index' %}">Trang chủ</a></li>
                 <li><a href="{% url 'rooms' %}">Phòng</a></li>
                 <li><a href="{% url 'about-us' %}">Về chúng tôi</a></li>
-                <li><a href="{% url 'pages' %}">Trang</a>
-                    <ul class="dropdown">
-                        <li><a href="{% url 'room-details' %}">Chi tiết phòng</a></li>
-                        <li><a href="{% url 'blog-details' %}">Chi tiết blog</a></li>
-                        <li><a href="#">Phòng gia đình</a></li>
-                        <li><a href="#">Phòng cao cấp</a></li>
-                    </ul>
-                </li>
+                <li><a href="{% url 'blog-details' %}">Blog</a></li>
                 <li><a href="{% url 'blog' %}">Tin tức</a></li>
                 <li><a href="{% url 'contact' %}">Liên hệ</a></li>
             </ul>
@@ -108,17 +101,8 @@
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <a href="{% url 'booking' %}" class="bk-btn">Đặt phòng ngay</a>
-                            <div class="language-option">
-                                <img src="{% static 'img/flag.jpg' %}" alt="">
-                                <span>VI <i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li><a href="#">Zi</a></li>
-                                        <li><a href="#">Fr</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <a href="{% url 'login' %}" class="bk-btn">đăng nhập</a>
+                            <a href="{% url 'signup' %}" class="bk-btn">Đăng kí</a>
                         </div>
                     </div>
                 </div>
@@ -141,14 +125,7 @@
                                     <li><a href="{% url 'index' %}">Trang chủ</a></li>
                                     <li><a href="{% url 'rooms' %}">Phòng</a></li>
                                     <li><a href="{% url 'about-us' %}">Về chúng tôi</a></li>
-                                    <li><a href="{% url 'pages' %}">Trang</a>
-                                        <ul class="dropdown">
-                                            <li><a href="{% url 'room-details' %}">Chi tiết phòng</a></li>
-                                            <li><a href="{% url 'blog-details' %}">Chi tiết blog</a></li>
-                                            <li><a href="#">Phòng gia đình</a></li>
-                                            <li><a href="#">Phòng cao cấp</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="{% url 'blog-details' %}">Blog</a></li>
                                     <li><a href="{% url 'blog' %}">Tin tức</a></li>
                                     <li class="active"><a href="{% url 'contact' %}">Liên hệ</a></li>
                                 </ul>

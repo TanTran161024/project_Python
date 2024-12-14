@@ -395,7 +395,7 @@ ul, ol {
 .menu-item .nav-menu {
 	text-align: right;
 }
-.menu-item .nav-menu .mainmenu {
+.menu-item .nav-menu  {
 	display: inline-block;
 }
 .menu-item .nav-menu .mainmenu li {

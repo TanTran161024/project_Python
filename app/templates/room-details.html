@@ -46,17 +46,8 @@
             <i class="icon_search"></i>
         </div>
         <div class="header-configure-area">
-            <div class="language-option">
-                <img src="{% static 'img/flag.jpg' %}" alt="">
-                <span>EN <i class="fa fa-angle-down"></i></span>
-                <div class="flag-dropdown">
-                    <ul>
-                        <li><a href="#">Zi</a></li>
-                        <li><a href="#">Fr</a></li>
-                    </ul>
-                </div>
-            </div>
-            <a href="{% url 'booking' %}" class="bk-btn">Đặt Phòng Ngay</a>
+            <a href="{% url 'login' %}" class="bk-btn">đăng nhập</a>
+            <a href="{% url 'signup' %}" class="bk-btn">Đăng kí</a>
         </div>
         <nav class="mainmenu mobile-menu">
             <ul>
@@ -64,13 +55,7 @@
                 <li><a href="{% url 'rooms' %}">Phòng</a></li>
                 <li><a href="{% url 'about-us' %}">Giới Thiệu</a></li>
                 <li><a href="{% url 'pages' %}">Trang</a>
-                    <ul class="dropdown">
-                        <li><a href="{% url 'room-details' %}">Chi Tiết Phòng</a></li>
-                        <li><a href="{% url 'blog-details' %}">Chi Tiết Blog</a></li>
-                        <li><a href="#">Phòng Gia Đình</a></li>
-                        <li><a href="#">Phòng Cao Cấp</a></li>
-                    </ul>
-                </li>
+                <li><a href="{% url 'blog-details' %}">Blog</a></li>
                 <li><a href="{% url 'blog' %}">Tin Tức</a></li>
                 <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
             </ul>
@@ -108,17 +93,8 @@
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <a href="{% url 'booking' %}" class="bk-btn">Đặt Phòng Ngay</a>
-                            <div class="language-option">
-                                <img src="{% static 'img/flag.jpg' %}" alt="">
-                                <span>EN <i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li><a href="#">Zi</a></li>
-                                        <li><a href="#">Fr</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <a href="{% url 'login' %}" class="bk-btn">đăng nhập</a>
+                            <a href="{% url 'signup' %}" class="bk-btn">Đăng kí</a>
                         </div>
                     </div>
                 </div>
@@ -142,14 +118,7 @@
                                     <li><a href="{% url 'index' %}">Trang Chủ</a></li>
                                     <li class="active"><a href="{% url 'rooms' %}">Phòng</a></li>
                                     <li><a href="{% url 'about-us' %}">Giới Thiệu</a></li>
-                                    <li><a href="{% url 'pages' %}">Trang</a>
-                                        <ul class="dropdown">
-                                            <li><a href="{% url 'room-details' %}">Chi Tiết Phòng</a></li>
-                                            <li><a href="{% url 'blog-details' %}">Chi Tiết Blog</a></li>
-                                            <li><a href="#">Phòng Gia Đình</a></li>
-                                            <li><a href="#">Phòng Cao Cấp</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="{% url 'blog-details' %}">Blog</a></li>
                                     <li><a href="{% url 'blog' %}">Tin Tức</a></li>
                                     <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
                                 </ul>
