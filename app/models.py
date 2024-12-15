@@ -18,11 +18,11 @@ class Room(models.Model):
         ('suite', 'Phòng suite'),
         ('deluxe', 'Phòng cao cấp'),
     )
-    
     name = models.CharField(max_length=200, verbose_name="Tên phòng")
     room_type = models.CharField(max_length=20, choices=ROOM_TYPES, verbose_name="Loại phòng")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Giá mỗi đêm (VNĐ)")
     size = models.IntegerField(help_text="Diện tích tính bằng mét vuông", verbose_name="Diện tích")
+    service = models.CharField(max_length=200, verbose_name="Dịch vụ")
     capacity = models.IntegerField(help_text="Số khách tối đa", verbose_name="Sức chứa")
     description = RichTextField(verbose_name="Mô tả chi tiết")
     image = models.ImageField(upload_to='rooms/', verbose_name="Hình ảnh")

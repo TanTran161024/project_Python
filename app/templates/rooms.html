@@ -32,48 +32,6 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
-    <!-- Phần Menu Offcanvas Bắt Đầu -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="canvas-open">
-        <i class="icon_menu"></i>
-    </div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="canvas-close">
-            <i class="icon_close"></i>
-        </div>
-        <div class="search-icon search-switch">
-            <i class="icon_search"></i>
-        </div>
-        <div class="header-configure-area">
-            
-            <a href="{% url 'login' %}" class="bk-btn">đăng nhập</a>
-            <a href="{% url 'signup' %}" class="bk-btn">Đăng kí</a>
-        </div>
-        <nav class="mainmenu mobile-menu">
-            <ul>
-                <li class="active"><a href="{% url 'index' %}">Trang chủ</a></li>
-                <li><a href="{% url 'rooms' %}">Phòng</a></li>
-                <li><a href="{% url 'about-us' %}">Giới thiệu</a></li>
-                <li><a href="{% url 'blog-details' %}">Blog</a></li>
-                <li><a href="{% url 'blog' %}">Tin tức</a></li>
-                <li><a href="{% url 'contact' %}">Liên hệ</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="top-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-tripadvisor"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-        </div>
-        <ul class="top-widget">
-            <li><i class="fa fa-phone"></i> 190067890</li>
-            <li><i class="fa fa-envelope"></i> Hotel@gmail.com</li>
-        </ul>
-    </div>
-    <!-- Phần Menu Offcanvas Kết Thúc -->
-
     <!-- Phần Header Bắt Đầu -->
     <header class="header-section header-normal">
         <div class="top-nav">
@@ -123,8 +81,15 @@
                                     <li><a href="{% url 'contact' %}">Liên hệ</a></li>
                                 </ul>
                             </nav>
-                            <div class="nav-right search-switch">
-                                <i class="icon_search"></i>
+                            <div class="container"style="margin-bottom: 10px;">
+                                <div class="input-group">
+                                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="search-addon">
+                                            <i class="icon_search"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,29 +121,29 @@
     <section class="rooms-section spad">
         <div class="container">
             <div class="row">
+                {%for room in rooms%}
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="{% static 'img/room/room-1.jpg' %}" alt="">
+                        <img src="{{room.image.url}}" alt="">
                         <div class="ri-text">
-                            <h4>Phòng King Cao Cấp</h4>
-                            <h3>159$<span>/Đêm</span></h3>
+                            <h4>{{ room.name }}</h4>
+                            <h3>{{ room.price |floatformat:0  }}vnđ<span>/Đêm</span></h3>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td class="r-o">Diện tích:</td>
-                                        <td>30 ft</td>
+                                        <td>{{ room.size }} m²</td>
                                     </tr>
                                     <tr>
                                         <td class="r-o">Sức chứa:</td>
-                                        <td>Tối đa 3 người</td>
+                                        <td>Tối đa {{ room.capacity }} người</td>
                                     </tr>
                                     <tr>
-                                        <td class="r-o">Giường:</td>
-                                        <td>Giường King</td>
-                                    </tr>
+                                        <td class="r-o">Loại phòng:</td>
+                                        <td>{{ room.room_type }}</td>
                                     <tr>
                                         <td class="r-o">Dịch vụ:</td>
-                                        <td>Wifi, Truyền hình, Phòng tắm,...</td>
+                                        <td>{{ room.service }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -186,126 +151,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="{% static 'img/room/room-3.jpg' %}" alt="">
-                        <div class="ri-text">
-                            <h4>Phòng đôi</h4>
-                            <h3>159$<span>/Mỗi đêm</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Diện tích:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Sức chứa:</td>
-                                        <td>Tối đa 2 người</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Giường:</td>
-                                        <td>Giường đôi</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Dịch vụ:</td>
-                                        <td>Wifi, Truyền hình, Phòng tắm,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="{% url 'room-details' %}" class="primary-btn">Chi tiết thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="{% static 'img/room/room-4.jpg' %}" alt="">
-                        <div class="ri-text">
-                            <h4>Phòng sang trọng</h4>
-                            <h3>159$<span>/Mỗi đêm</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Diện tích:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Sức chứa:</td>
-                                        <td>Tối đa 1 người</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Giường:</td>
-                                        <td>Giường đôi</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Dịch vụ:</td>
-                                        <td>Wifi, Truyền hình, Phòng tắm,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="{% url 'room-details' %}" class="primary-btn">Chi tiết thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="{% static 'img/room/room-5.jpg' %}" alt="">
-                        <div class="ri-text">
-                            <h4>Phòng có tầm nhìn</h4>
-                            <h3>159$<span>/Mỗi đêm</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Diện tích:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Sức chứa:</td>
-                                        <td>Tối đa 1 người</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Giường:</td>
-                                        <td>Giường đôi</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Dịch vụ:</td>
-                                        <td>Wifi, Truyền hình, Phòng tắm,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="{% url 'room-details' %}" class="primary-btn">Chi tiết thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="room-item">
-                        <img src="{% static 'img/room/room-6.jpg' %}" alt="">
-                        <div class="ri-text">
-                            <h4>Phòng nhỏ</h4>
-                            <h3>159$<span>/Mỗi đêm</span></h3>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Diện tích:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Sức chứa:</td>
-                                        <td>Tối đa 2 người</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Giường:</td>
-                                        <td>Giường đôi</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Dịch vụ:</td>
-                                        <td>Wifi, Truyền hình, Phòng tắm,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="{% url 'room-details' %}" class="primary-btn">Chi tiết thêm</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
                 <div class="col-lg-12">
                     <div class="room-pagination">
                         <a href="#">1</a>

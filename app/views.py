@@ -31,7 +31,9 @@ def main(request):
     return render(request, 'main.html')
 
 def rooms(request):
-    return render(request, 'rooms.html')
+    rooms = Room.objects.all()
+    context = {'rooms': rooms}
+    return render(request, 'rooms.html',context)
 
 def roomdetail(request):
     return render(request, 'room-details.html')
@@ -68,4 +70,4 @@ def login(request):
 
 def logout(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
