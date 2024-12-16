@@ -18,4 +18,5 @@ urlpatterns = [
     path('blog-details/', views.blogdetail, name='blog-details'),
     path('pages/', views.pages, name='pages'),
     path('booking/', views.booking, name='booking'),
+    path('promotion/', views.promotion, name='promotion'),
 ]

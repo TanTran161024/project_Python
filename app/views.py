@@ -39,8 +39,9 @@ def roomdetail(request):
     return render(request, 'room-details.html')
 
 def signup(request):
+    form = CreateUserForm()
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form =  CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
@@ -50,9 +51,8 @@ def signup(request):
         else:
             for msg in form.error_messages:
                 messages.error(request, f'{msg}: {form.error_messages[msg]}')
-    else:
-        form = UserCreationForm
-        return render(request, 'signup.html', {'form':form})
+        
+    return render(request, 'signup.html', {'form':form})
 
 def login(request):
     if request.method == 'POST':
@@ -71,3 +71,8 @@ def login(request):
 def logout(request):
     logout(request)
     return redirect('login')
+def promotion(request):
+    promotion = Promotion.objects.all()
+    context = {'promotion': promotion}
+    return render(request, 'promotion.html', context)
+
