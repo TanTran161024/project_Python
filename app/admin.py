@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import BlogPost, Booking, Contact, Room, UserProfile
+from .models import BlogPost, Booking, Contact, Room, UserProfile,Promotion
 
 # Đăng ký các mô hình vào Django Admin
 admin.site.register(BlogPost)
 admin.site.register(Booking)
 admin.site.register(Contact)
 admin.site.register(Room)
+admin.site.register(Promotion)
 admin.site.register(UserProfile)
 
 #Quản lý admin
@@ -129,3 +130,29 @@ class RoomAdmin(admin.ModelAdmin):
             return format_html('<img src="{}" width="50" height="50" />', obj.image.url)
         return "Không có ảnh"
     display_image.short_description = "Hình ảnh"
+#Quản lý khuyến mãi
+class PromotionAdmin(admin.ModelAdmin):
+    list_display = ('code', 'discount_percentage', 'start_date', 'end_date', 'is_active', 'display_image')
+    list_filter = ('is_active',)
+    search_fields = ('code', 'description')
+    readonly_fields = ('created_at', 'updated_at')
+    list_editable = ('is_active', 'discount_percentage')
+
+    fieldsets = (
+        ('Thông tin cơ bản', {
+            'fields': ('code', 'discount_percentage')
+        }),
+        ('Thời gian khuyến mãi', {
+            'fields': ('start_date', 'end_date')
+        }),
+        ('Hình ảnh và mô tả', {
+            'fields': ('image', 'description')
+        }),
+        ('Trạng thái', {
+            'fields': ('is_active',)
+        }),
+        ('Thông tin thời gian', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
