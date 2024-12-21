@@ -95,16 +95,26 @@
               </ul>
             </div>
             <div class="col-lg-6">
-              <div class="tn-right">
+              <div class="tn-right"style = "display: {{user_not_login}}">
                 <div class="top-social">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                  <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
                 </div>
-                <a href="{% url 'login' %}" class="bk-btn">đăng nhập</a>
-                <a href="{% url 'signup' %}" class="bk-btn">Đăng ký</a>
-              </div>
+                <a href="{% url 'login' %}" class="bk-btn">Đăng Nhập</a>
+                <a href="{% url 'signup' %}" class="bk-btn">Đăng Ký</a>
+            </div>
+            <div class="tn-right"style = "display: {{user_login}}">
+                <div class="top-social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                </div>
+                <span>HELLO! {{request.user}}</span>
+                <a href="{% url 'logout' %}" class="bk-btn">Đăng xuất</a>
+            </div>
             </div>
           </div>
         </div>

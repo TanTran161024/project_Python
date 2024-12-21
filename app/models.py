@@ -14,7 +14,7 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email' ,'first_name' , 'last_name', 'password1', 'password2']
-User = get_user_model()
+
 
 class Room(models.Model):
     ROOM_TYPES = (
@@ -80,18 +80,7 @@ class Booking(models.Model):
         """Tính tổng giá dựa trên giá phòng và số đêm"""
         nights = self.calculate_total_nights()
         return self.room.calculate_price_for_stay(nights)
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', verbose_name="Người dùng")
-    phone = models.CharField(max_length=20, verbose_name="Số điện thoại")
-    address = models.TextField(verbose_name="Địa chỉ")
-    profile_picture = models.ImageField(upload_to='profiles/', null=True, blank=True, verbose_name="Ảnh đại diện")
 
-    class Meta:
-        verbose_name = "Hồ sơ người dùng"
-        verbose_name_plural = "Hồ sơ người dùng"
-
-    def __str__(self):
-        return self.user.username
 class BlogPost(models.Model):
     title = models.CharField(max_length=200, verbose_name="Tiêu đề")
     slug = models.SlugField(unique=True, verbose_name="Slug (đường dẫn)")
