@@ -65,7 +65,15 @@ def blogdetail(request):
     return render(request, 'blog-details.html',context)
 
 def booking(request):
-    return render(request, 'booking.html')
+    if request.user.is_authenticated:
+        customer = request.user
+        user_not_login = "none"  # Ẩn phần đăng nhập
+        user_login = "block"  # Hiển thị phần đăng xuất
+    else:
+        user_not_login = "block"  # Hiển thị phần đăng nhập
+        user_login = "none"  # Ẩn phần đăng xuất
+    context = {'user_not_login': user_not_login, 'user_login': user_login}
+    return render(request, 'booking.html',context)
 
 def main(request):
     return render(request, 'main.html')
@@ -134,5 +142,5 @@ def promotion(request):
         user_login = "none"  # Ẩn phần đăng xuất
     promotion = Promotion.objects.all()
     context = {'promotion': promotion,'user_not_login': user_not_login, 'user_login': user_login}
-    return render(request, 'promotion.html', context)
+    return render(request, 'promotion.html',context)
 
