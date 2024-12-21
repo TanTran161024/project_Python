@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import BlogPost, Booking, Contact, Room, UserProfile,Promotion
+from .models import BlogPost, Booking, Contact, Room,Promotion
 
 # Đăng ký các mô hình vào Django Admin
 admin.site.register(BlogPost)
@@ -8,22 +8,8 @@ admin.site.register(Booking)
 admin.site.register(Contact)
 admin.site.register(Room)
 admin.site.register(Promotion)
-admin.site.register(UserProfile)
 
-#Quản lý admin
-class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'phone', 'address')
-    search_fields = ('user__username', 'phone', 'address')
-    raw_id_fields = ('user',)
-    
-    fieldsets = (
-        ('Thông tin người dùng', {
-            'fields': ('user', 'phone', 'address')
-        }),
-        ('Ảnh đại diện', {
-            'fields': ('profile_picture',)
-        }),
-    )
+
 
 #thông tin liên hệ
 class ContactAdmin(admin.ModelAdmin):
