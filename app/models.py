@@ -35,6 +35,10 @@ class Room(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Ngày tạo")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Ngày cập nhật")
 
+    # Phương thức định dạng giá hiển thị
+    def formatted_price(self):
+        """Hiển thị giá với định dạng 1.000.000 VNĐ"""
+        return f"{self.price:,.0f}".replace(",", ".")
     class Meta:
         ordering = ['-created_at']
         verbose_name = "Phòng"
