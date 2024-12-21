@@ -90,7 +90,9 @@ def roomdetail(request):
     else:
         user_not_login = "block"  # Hiển thị phần đăng nhập
         user_login = "none"  # Ẩn phần đăng xuất
-    context = {'user_not_login': user_not_login, 'user_login': user_login}
+    id = request.GET.get('id','')
+    rooms = Room.objects.filter(id=id)
+    context = {'rooms':rooms,'user_not_login': user_not_login, 'user_login': user_login}
     return render(request, 'room-details.html',context)
 
 def signup(request):

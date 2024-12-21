@@ -133,12 +133,13 @@
     <section class="room-details-section spad">
         <div class="container">
             <div class="row">
+                {%for room in rooms%}
                 <div class="col-lg-8">
                     <div class="room-details-item">
-                        <img src="{% static 'img/room/room-details.jpg' %}" alt="">
+                        <img src="{{room.image.url}}" alt=""style ="width: 200%;">
                         <div class="rd-text">
                             <div class="rd-title">
-                                <h3>Phòng King Cao Cấp</h3>
+                                <h3>{{ room.name }}</h3>
                                 <div class="rdt-right">
                                     <div class="rating">
                                         <i class="icon_star"></i>
@@ -150,38 +151,28 @@
                                     <a href="{% url 'booking' %}">Đặt Phòng Ngay</a>
                                 </div>
                             </div>
-                            <h2>159$<span>/Đêm</span></h2>
+                            <h2>{{ room.formatted_price }}đ<span>/Đêm</span></h2>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td class="r-o">Kích thước:</td>
-                                        <td>30 ft</td>
+                                        <td>{{ room.size }} m²</td>
                                     </tr>
                                     <tr>
                                         <td class="r-o">Sức chứa:</td>
-                                        <td>Tối đa 5 người</td>
+                                        <td>Tối đa {{ room.capacity }} người</td>
                                     </tr>
                                     <tr>
-                                        <td class="r-o">Giường:</td>
-                                        <td>Giường King</td>
-                                    </tr>
+                                        <td class="r-o">Loại phòng:</td>
+                                        <td>{{ room.room_type }}</td>
+                                    <tr>
                                     <tr>
                                         <td class="r-o">Dịch vụ:</td>
-                                        <td>Wifi, Tivi, Phòng tắm,...</td>
+                                        <td>{{ room.service }}</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <p class="f-para">Motorhome hay Trailer, đó là câu hỏi dành cho bạn. Dưới đây là một số
-                                ưu điểm và nhược điểm của cả hai, để bạn có thể tự tin khi mua một chiếc RV.
-                                Khi so sánh Rvs, nên mua motorhome hay fifth wheeler? Các ưu và nhược điểm của cả hai
-                                được nghiên cứu để bạn có thể lựa chọn một cách khôn ngoan khi mua một chiếc RV.
-                                Sở hữu một motorhome hay fifth wheel là một thành tựu trong đời. Nó có thể giống như
-                                việc đi du lịch với nhà khi bạn khám phá các địa điểm khác nhau của đất nước tuyệt vời
-                                của chúng ta, Mỹ.</p>
-                            <p>Hai loại xe giải trí phổ biến là motorized và towable.
-                                Towable rvs là các travel trailers và fifth wheel. Travel trailer hoặc fifth wheel RV
-                                có điểm thu hút là có thể kéo bởi một chiếc pickup hoặc ô tô, do đó tạo sự linh hoạt
-                                khi bạn đã có phương tiện di chuyển khi bạn đậu xe tại khu cắm trại.</p>
+                            <p class="f-para">{{room.description|safe}}</p>
                         </div>
                     </div>
                     <div class="rd-reviews">
@@ -287,6 +278,7 @@
                         </form>
                     </div>
                 </div>
+                {%endfor%}
             </div>
         </div>
     </section>
