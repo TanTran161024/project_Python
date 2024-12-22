@@ -179,37 +179,39 @@
         </div>
       </div>
 
-      <div class="container mt-5 utility">
+      <section class="container mt-5 utility">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h2 class="card-title">Thông tin phòng</h2>
-            <form>
+            <div class="row">
+              <h2 class="card-title">Thông tin phòng</h2>
+              {%for room in rooms%}
               <ul class="list-unstyled">
                 <li class="mb-2">
-                  <i class="bi bi-check-circle text-success"></i> Phòng View
-                  Biển
+                  <i class="bi bi-check-circle text-success"></i>
+                  <h3>{{ room.name }}</h3>
                 </li>
                 <li class="mb-2">
-                  <i class="bi bi-check-circle text-success"></i> Giá phòng:
-                  150000vnđ
+                  <i class="bi bi-check-circle text-success"></i> Giá phòng: {{
+                  room.formatted_price }}đ
                 </li>
                 <li class="mb-2">
                   <i class="bi bi-check-circle text-success"></i> Sức chứa: Tối
-                  đa 3 người
+                  đa {{ room.capacity }} người
                 </li>
                 <li class="mb-2">
-                  <i class="bi bi-check-circle text-success"></i> Diện tích: 45
-                  m²
+                  <i class="bi bi-check-circle text-success"></i> Diện tích: {{
+                  room.size }} m²
                 </li>
                 <li class="mb-2">
-                  <i class="bi bi-check-circle text-success"></i> Loại phòng:
-                  deluxe
+                  <i class="bi bi-check-circle text-success"></i> Loại phòng:{{
+                  room.room_type }}
                 </li>
               </ul>
-            </form>
+              {%endfor%}
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <div class="section summary">
         <h2>Chi tiết giá</h2>
