@@ -69,22 +69,73 @@ def blogdetail(request):
 def booking(request):
     if request.user.is_authenticated:
         customer = request.user
-        user_not_login = "none"  # Ẩn phần đăng nhập
-        user_login = "block"  # Hiển thị phần đăng xuất
+        user_not_login = "none"  # Hide login section
+        user_login = "block"  # Show logout section
     else:
-        user_not_login = "block"  # Hiển thị phần đăng nhập
-        user_login = "none"  # Ẩn phần đăng xuất
+        user_not_login = "block"  # Show login section
+        user_login = "none"  # Hide logout section
 
-    # Fetch the room id from the 'roomdetail' page or from URL parameters
-    id = request.GET.get('id', '')
-    if id:
-        rooms = Room.objects.filter(id=id)
-    else:
-        rooms = Room.objects.none()  # Or handle the case where 'id' is not provided
+    # Get room ID from URL parameters
+    room_id = request.GET.get('id')
+    
+    if request.method == 'POST':
+        # Handle form submission
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        country_code = request.POST.get('country_code')
+        voucher_type = request.POST.get('voucher')
+        
+        # Get selected services
+        services = []
+        if request.POST.get('food_service'): services.append('Dịch Vụ Ăn Uống')
+        if request.POST.get('laundry_service'): services.append('Dịch Vụ Giặt Là')
+        if request.POST.get('transport_service'): services.append('Dịch Vụ Di Chuyển')
+        if request.POST.get('entertainment_service'): services.append('Dịch Vụ Giải Trí và Thư Giãn')
+        if request.POST.get('other_service'): services.append('Dịch Vụ Khác')
 
-    context = {'rooms': rooms, 'user_not_login': user_not_login, 'user_login': user_login}
+        # Calculate total price including services
+        total_price = 0
+        if room_id:
+            try:
+                room = Room.objects.get(id=room_id)
+                total_price = room.price
+                
+                # Add service prices
+                if 'Dịch Vụ Ăn Uống' in services: total_price += 150000
+                if 'Dịch Vụ Giặt Là' in services: total_price += 50000
+                if 'Dịch Vụ Di Chuyển' in services: total_price += 300000
+                if 'Dịch Vụ Giải Trí và Thư Giãn' in services: total_price += 1200000
+                
+                # Create booking record
+                booking = Booking.objects.create(
+                    user=request.user if request.user.is_authenticated else None,
+                    room=room,
+                    name=name,
+                    email=email,
+                    phone=f"{country_code}{phone}",
+                    voucher_type=voucher_type,
+                    services=','.join(services),
+                    total_price=total_price
+                )
+                
+                messages.success(request, 'Đặt phòng thành công!')
+                return redirect('booking_confirmation', booking_id=booking.id)
+                
+            except Room.DoesNotExist:
+                messages.error(request, 'Phòng không tồn tại!')
+                return redirect('rooms')
+    
+    # Get room details for display
+    rooms = Room.objects.filter(id=room_id) if room_id else Room.objects.none()
+    
+    context = {
+        'rooms': rooms,
+        'user_not_login': user_not_login,
+        'user_login': user_login
+    }
+    
     return render(request, 'booking.html', context)
-
 
 def main(request):
     return render(request, 'main.html')
