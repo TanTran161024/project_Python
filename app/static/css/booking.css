@@ -1,133 +1,182 @@
-.booking {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  background: #eee;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+/* Main container */
+.booking-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
-h2 {
+/* Progress bar */
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #e0e0e0;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.step.active::after {
+  background: #007bff;
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.step.active .step-number {
+  border-color: #007bff;
+  background: #007bff;
+  color: #fff;
+}
+
+/* Form sections */
+.section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.section h2 {
   margin-bottom: 20px;
+  font-size: 1.5rem;
   color: #333;
 }
 
-.section {
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
+/* Form inputs */
+.form-group {
   margin-bottom: 20px;
 }
 
-.section label {
+.form-group label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
-.pix-text input,
-.section select,
-.section textarea {
-  width: 70%;
+.form-group input {
+  width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 4px;
 }
-.email {
-  float: left;
-  width: 49%;
-}
-.phone {
-  float: right;
-  width: 49%;
-}
 
-.check-box {
-  display: flex;
-  width: 80%;
-}
-
-.self-use {
-  float: left;
-  width: 50%;
-  display: flex;
-  font-size: 15px;
-}
-.gift {
-  float: right;
-  width: 50%;
-  display: flex;
-  font-size: 15px;
-}
-.gift label,
-.self-use label {
-  width: 222px;
-  margin-left: 15px;
-  margin-top: 3px;
-}
-.service {
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-.checkbox-group {
+/* Services grid */
+.services-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-.checkbox-item {
+.service-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.service-item:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Price summary */
+.price-details {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.price-row {
   display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.checkbox-item input {
-  width: 16px;
-  height: 16px;
-}
-
-.checkbox-item label {
-  font-size: 14px;
-  color: #343a40;
-  cursor: pointer;
-}
-.utility {
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-.summary {
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.summary div {
-  margin-bottom: 10px;
-  font-weight: bold;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 .total {
   font-size: 1.2em;
-  color: #e74c3c;
+  font-weight: bold;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #eee;
 }
 
+/* Submit button */
 .submit-btn {
-  display: block;
   width: 100%;
-  padding: 10px;
+  padding: 16px;
   background: #007bff;
   color: #fff;
   border: none;
   border-radius: 4px;
+  font-size: 1.1em;
   cursor: pointer;
-  font-size: 1em;
+  transition: background 0.3s ease;
 }
 
 .submit-btn:hover {
   background: #0056b3;
+}
+
+/* Payment modal */
+.payment-methods {
+  margin-top: 24px;
+}
+
+.payment-option {
+  display: block;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.payment-option:hover {
+  background: #f8f9fa;
+}
+
+.option-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .form-row {
+      flex-direction: column;
+  }
+  
+  .services-grid {
+      grid-template-columns: 1fr;
+  }
+  
+  .step-text {
+      display: none;
+  }
 }

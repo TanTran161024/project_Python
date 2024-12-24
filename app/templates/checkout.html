@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Check-out | Quản lý khách sạn</title>
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Quản lý khách sạn</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'manage_room' %}">Quản lý phòng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'manage_promotions' %}"
+              >Quản lý khuyến mãi</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'check_in' %}">Check-in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'check_out' %}">Check-out</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'thongkedoanhthu' %}"
+              >Thống kê doanh thu</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Đăng xuất</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <h1 class="text-center">Check-out Khách Sạn</h1>
+
+      <form action="{% url 'check_out' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="guest_name">Tên khách</label>
+              <input
+                type="text"
+                class="form-control"
+                id="guest_name"
+                name="guest_name"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="id_card">CMND/CCCD</label>
+              <input
+                type="text"
+                class="form-control"
+                id="id_card"
+                name="id_card"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="room_number">Số phòng</label>
+              <select
+                class="form-control"
+                id="room_number"
+                name="room_number"
+                required
+              >
+                <option value="">Chọn phòng</option>
+                {% for room in rooms %}
+                <option value="{{ room.id }}">Phòng {{ room.number }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="checkout_date">Ngày check-out</label>
+              <input
+                type="date"
+                class="form-control"
+                id="checkout_date"
+                name="checkout_date"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Các dịch vụ phát sinh -->
+        <div class="form-group">
+          <label for="additional_services">Dịch vụ phát sinh</label>
+          <div class="list-group" id="additional_services">
+            {% for service in additional_services %}
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="{{ service.id }}"
+                id="service{{ service.id }}"
+                name="additional_services[]"
+              />
+              <label class="form-check-label" for="service{{ service.id }}">
+                {{ service.name }} ({{ service.price }} VND)
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="special_requests">Yêu cầu đặc biệt</label>
+          <textarea
+            class="form-control"
+            id="special_requests"
+            name="special_requests"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block">
+          Check-out
+        </button>
+      </form>
+    </div>
+
+    <!-- Bootstrap JS và jQuery -->
+    <script src="{% static 'js/jquery.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

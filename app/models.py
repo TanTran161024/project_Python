@@ -133,29 +133,20 @@ from ckeditor.fields import RichTextField
 from datetime import date
 
 class Promotion(models.Model):
-    code = models.CharField(max_length=50, unique=True, verbose_name="Mã khuyến mãi", help_text="Nhập mã khuyến mãi (chỉ chữ và số, không có ký tự đặc biệt).")
-    name = models.CharField(max_length=200, verbose_name="Tên mã khuyến mãi", help_text="Tên hiển thị của mã khuyến mãi.")
-    discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Phần trăm giảm giá (%)", help_text="Nhập giá trị từ 0.01 đến 100.00. Ví dụ: 10.00 cho 10% giảm giá.")
-    image = models.ImageField(upload_to='promotion/', verbose_name="Hình ảnh", help_text="Hình ảnh đại diện cho mã khuyến mãi.")
-    start_date = models.DateField(verbose_name="Ngày bắt đầu", help_text="Ngày mã khuyến mãi bắt đầu có hiệu lực.")
-    end_date = models.DateField(verbose_name="Ngày kết thúc", help_text="Ngày mã khuyến mãi hết hiệu lực.")
-    is_active = models.BooleanField(default=True, verbose_name="Còn hiệu lực", help_text="Đánh dấu nếu mã khuyến mãi vẫn còn áp dụng được.")
-    description = RichTextField(
-    verbose_name="Mô tả chi tiết", help_text="Mô tả đầy đủ các điều kiện và thông tin của mã khuyến mãi.")
-    created_at = models.DateTimeField(
-    auto_now_add=True, verbose_name="Ngày tạo")
-    updated_at = models.DateTimeField(
-    auto_now=True, verbose_name="Ngày cập nhật")
-
-    class Meta:
-        verbose_name = "Mã khuyến mãi"
-        verbose_name_plural = "Các mã khuyến mãi"
-        ordering = ['-start_date']
+    code = models.CharField(max_length=50, unique=True, verbose_name="Mã khuyến mãi")
+    name = models.CharField(max_length=200, verbose_name="Tên mã khuyến mãi")
+    discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Phần trăm giảm giá (%)")
+    image = models.ImageField(upload_to='promotion/', verbose_name="Hình ảnh")
+    start_date = models.DateField(verbose_name="Ngày bắt đầu")
+    end_date = models.DateField(verbose_name="Ngày kết thúc")
+    is_active = models.BooleanField(default=True, verbose_name="Còn hiệu lực")
+    description = RichTextField(verbose_name="Mô tả chi tiết")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Ngày tạo")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Ngày cập nhật")
 
     def __str__(self):
         return f"{self.code} - {self.name}"
 
     def is_valid(self):
-        """Kiểm tra mã khuyến mãi còn hiệu lực hay không"""
         today = date.today()
         return self.is_active and self.start_date <= today <= self.end_date
