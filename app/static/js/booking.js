@@ -1,4 +1,54 @@
 $(document).ready(function() {
+    // Apply voucher handler
+    $('#apply-voucher').click(function() {
+        $.ajax({
+            url: '/promotion/', // URL đến trang promotion.html
+            type: 'GET',
+            success: function(data) {
+                // Lấy danh sách các voucher từ dữ liệu trả về
+                var voucherList = $(data).find('.promotion-item');
+
+                // Xóa danh sách voucher cũ
+                $('#voucher-list-container').empty();
+
+                // Thêm từng voucher vào modal
+                voucherList.each(function() {
+                    var voucher = $(this);
+                    var voucherId = voucher.attr('id'); // Lấy ID của voucher
+                    var voucherCode = voucher.find('h6').text(); // Lấy mã voucher
+                    var voucherDiscount = voucher.find('h5').text(); // Lấy phần trăm giảm giá
+
+                    // Tạo nút voucher với mã voucher và phần trăm giảm giá
+                    var voucherButton = $('<button type="button" class="btn btn-outline-primary">' + voucherCode + ' - ' + voucherDiscount + '</button>');
+
+                    // Thêm sự kiện click cho nút voucher
+                    voucherButton.click(function() {
+                        // Áp dụng mã voucher vào input
+                        $('#voucher-code').val(voucherCode);
+
+                        // Tính toán giá trị giảm giá 
+                        var totalPrice = parseFloat($('#total-price').text().replace(/\./g, '').replace(' VNĐ', '')); // Lấy tổng giá tiền và chuyển đổi sang số
+                        var discountPercentage = parseFloat(voucherDiscount.replace('Giảm ', '').replace('%', '')); // Lấy phần trăm giảm giá và chuyển đổi sang số
+                        var discountAmount = totalPrice * (discountPercentage / 100); // Tính giá trị giảm giá
+                        
+                        // Hiển thị số tiền giảm
+                        $('#discount-amount').text('Voucher: ' + -(discountAmount.toLocaleString('vi-VN')) + ' VNĐ'); 
+
+                        // Tính và hiển thị "Thành tiền"
+                        var finalPrice = totalPrice - discountAmount; // Tính tổng giá tiền sau khi giảm giá
+                        $('#final-price').text('Thành tiền: ' + finalPrice.toLocaleString('vi-VN') + ' VNĐ'); 
+
+                        // Ẩn modal
+                        $('#voucherModal').modal('hide');
+                    });
+
+                    // Thêm nút voucher vào danh sách
+                    $('#voucher-list-container').append(voucherButton);
+                });
+            }
+        });
+    });
+
     // Form submission handler
     $(".submit-btn").click(function() {
         // Validate required fields

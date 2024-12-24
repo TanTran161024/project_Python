@@ -192,25 +192,19 @@
 <section class="promotions-section spad">
           <div class="container">
               <div class="row">
-                  {% for promo in promotion %}
-                      <div class="col-lg-4 col-md-6">
-                          <div class="promotion-item">
-                                  <img src="{{ promo.image.url }}" alt="{{ promo.code }}">
-                              <div class="pi-text">
-                                  <h6>{{ promo.code }}</h6>
-                                  <h5><span>Giảm </span> {{ promo.discount_percentage|floatformat:2 }}% </h5>
-                                  {% comment %} <p>{{ promo.description|truncatechars:100 }}</p> {% endcomment %}
-                                  <p>
-                                       {{ promo.start_date|date:"d/m/Y" }} -
-                                       {{ promo.end_date|date:"d/m/Y" }}
-                                  </p>
-                                  <div class="bnt1">
-                                    <button type=submit class="bnt">Áp dụng ngay</button>
-                                </div>
-                              </div>
-                          </div>
-                      </div>
-                  {% endfor %}
+                {% for promo in promotion %}
+                <div id="voucher-{{ promo.id }}" class="promotion-item">
+                  <img src="{{ promo.image.url }}" alt="{{ promo.code }}">
+                  <div class="pi-text">
+                    <h6>{{ promo.code }}</h6>
+                    <h5><span>Giảm </span> {{ promo.discount_percentage|floatformat:2 }}% </h5>
+                    <p>
+                      {{ promo.start_date|date:"d/m/Y" }} -
+                      {{ promo.end_date|date:"d/m/Y" }}
+                    </p>
+                  </div>
+                </div>
+                {% endfor %}
                   {% comment %} <div class="col-lg-4 col-md-6">
                     <div class="promotion-item">
                         
