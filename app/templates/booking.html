@@ -189,20 +189,44 @@
       </div>
     </section>
 
-    <div class="section summary">
-      <h2>Chi tiết giá</h2>
-      <div>
-        Giá phòng: <span id="room-price">{{ room.formatted_price }}</span>
-      </div>
-      <div>
-        Thuế và phí: <span id="tax-fee">31.664 VNĐ</span>
-      </div>
-      <div class="total">
-        Tổng giá: <span id="total-price">267.960 VNĐ</span>
-      </div>
-      <div class="voucher-section">
-        <input type="text" id="voucher-code" placeholder="Nhập mã voucher">
-        <button id="apply-voucher" class="btn btn-primary">Áp dụng voucher</button>
+      <div class="section summary">
+        <h2>Chi tiết giá</h2>
+        <div>
+          Giá phòng: <span id="room-price">{{ room.formatted_price }}</span>
+        </div>
+        <div>
+          Thuế và phí: <span id="tax-fee">31.664 VNĐ</span>
+        </div>
+        <div>
+          Tổng giá: <span id="total-price">267.960 VNĐ</span>
+        </div>
+        <div id="discount-amount">Voucher: 0 VNĐ</div>
+        <div class="total">
+        <span id="final-price">Thành tiền: 0 VNĐ</span>
+        </div>
+        <div class="voucher-section">
+          <input type="text" id="voucher-code" placeholder="Nhập mã voucher">
+          <button id="apply-voucher" type="button" class="btn btn-primary" data-toggle="modal"
+            data-target="#voucherModal">Áp dụng voucher</button>
+        </div>
+          
+      <div id="voucherModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Chọn voucher</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div id="voucher-list-container"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+          </div>
+        </div>
       </div>
       <button class="submit-btn">Tiếp tục thanh toán</button>
 
