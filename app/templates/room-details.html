@@ -1,0 +1,510 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Sona Template" />
+    <meta name="keywords" content="Sona, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sona | Mẫu</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheets -->
+    <link
+      rel="stylesheet"
+      href="{% static 'css/bootstrap.min.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/font-awesome.min.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/elegant-icons.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/flaticon.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/owl.carousel.min.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/nice-select.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/jquery-ui.min.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/magnific-popup.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/slicknav.min.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/style.css' %}"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    <!-- Bộ tải trang -->
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Phần Header Bắt Đầu -->
+    <header class="header-section">
+      <div class="top-nav">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <ul class="tn-left">
+                <li><i class="fa fa-phone"></i> 190067890</li>
+                <li><i class="fa fa-envelope"></i> Hotel@gmail.com</li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <div class="tn-right" style="display: flex">
+                <div class="top-social">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                </div>
+                <a
+                  href="{% url 'login' %}"
+                  class="bk-btn"
+                  style="display: {% if not user.is_authenticated %}block{% else %}none{% endif %}; border-radius:50%;width:10px;height:10px"
+                >
+                  <i
+                    class="fa fa-user"
+                    style="
+                      color: #dfa974;
+                      font-size: 30px;
+                      text-align: center;
+                      margin-right: 35%;
+                      position: relative;
+                    "
+                  ></i>
+                  <span
+                    style="
+                      color: #dfa974;
+                      width: 20px;
+                      font-size: 10px;
+                      display: block;
+                    "
+                    >Tài khoản</span
+                  >
+                </a>
+                <a
+                  href="{% url 'manage_room' %}"
+                  class="bk-btn"
+                  style="display: {% if user.is_authenticated %}block{% else %}none{% endif %};font-size:25px;margin-top:-15px;background-color: white;margin-left:220px"
+                >
+                  <i
+                    class="fa fa-user"
+                    style="
+                      color: #dfa974;
+                      font-size: 20px;
+                      text-align: center;
+                      margin-right: 35%;
+                      position: relative;
+                    "
+                  ></i>
+                  <span
+                    style="
+                      color: #dfa974;
+                      font-size: 10px;
+                      display: block;
+                      text-align: center;
+                    "
+                    >Tài khoản</span
+                  >
+                </a>
+              </div>
+              {% comment %}
+              <div class="tn-right" style="display: {{user_login}}">
+                <div class="top-social">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                </div>
+                <span>HELLO! {{request.user}}</span>
+                <a href="{% url 'logout' %}" class="bk-btn">Đăng xuất</a>
+              </div>
+              {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-2">
+              <div class="logo">
+                <a href="{% url 'index' %}">
+                  <img src="{% static 'img/logo.png' %}" alt="" />
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-10">
+              <div class="nav-menu">
+                <nav class="mainmenu">
+                  <ul>
+                    <li class="active">
+                      <a href="{% url 'index' %}">Trang Chủ</a>
+                    </li>
+                    <li><a href="{% url 'rooms' %}">Phòng</a></li>
+                    <li><a href="{% url 'promotion' %}">Khuyến Mãi</a></li>
+                    <li><a href="{% url 'about-us' %}">Giới thiệu</a></li>
+                    <li><a href="{% url 'blog-details' %}">Blog</a></li>
+                    <li><a href="{% url 'blog' %}">Tin Tức</a></li>
+                    <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
+                  </ul>
+                </nav>
+                <div class="container" style="margin-bottom: 10px">
+                  <form method="POST" action="{% url 'search' %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                      <input
+                        type="search"
+                        class="form-control rounded"
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                        name="searched"
+                      />
+                      <button
+                        class="btn btn-outline-secondary"
+                        type="submit"
+                        id="search-addon"
+                      >
+                        <i class="icon_search"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Kết thúc Phần Header -->
+
+    <!-- Phần Breadcrumb -->
+    <div class="breadcrumb-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breadcrumb-text">
+              <h2>Phòng của Chúng Tôi</h2>
+              <div class="bt-option">
+                <a href="{% url 'index' %}">Trang Chủ</a>
+                <span>Phòng</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Kết thúc Phần Breadcrumb -->
+
+    <!-- Phần Chi Tiết Phòng -->
+    <section class="room-details-section spad">
+      <div class="container">
+        <div class="row">
+          {%for room in rooms%}
+          <div class="col-lg-8">
+            <div class="room-details-item">
+              <img src="{{room.image.url}}" alt="" style="width: 200%" />
+              <div class="rd-text">
+                <div class="rd-title">
+                  <h3>{{ room.name }}</h3>
+                  <div class="rdt-right">
+                    <div class="rating">
+                      <i class="icon_star"></i>
+                      <i class="icon_star"></i>
+                      <i class="icon_star"></i>
+                      <i class="icon_star"></i>
+                      <i class="icon_star-half_alt"></i>
+                    </div>
+                    <button
+                      style="
+                        background: #dfa974;
+                        color: white;
+                        border: none;
+                        padding: 10px;
+                      "
+                      class="booking-btn"
+                      data-url="{% url 'booking' %}"
+                    >
+                      Đặt Phòng Ngay
+                    </button>
+                  </div>
+                </div>
+                <h2>{{ room.formatted_price }}đ<span>/Đêm</span></h2>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td class="r-o">Kích thước:</td>
+                      <td>{{ room.size }} m²</td>
+                    </tr>
+                    <tr>
+                      <td class="r-o">Sức chứa:</td>
+                      <td>Tối đa {{ room.capacity }} người</td>
+                    </tr>
+                    <tr>
+                      <td class="r-o">Loại phòng:</td>
+                      <td>{{ room.room_type }}</td>
+                    </tr>
+
+                    <tr></tr>
+                    <tr>
+                      <td class="r-o">Dịch vụ:</td>
+                      <td>{{ room.service }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="f-para">{{room.description|safe}}</p>
+              </div>
+            </div>
+            <div class="rd-reviews">
+              <h4>Đánh Giá</h4>
+              <div class="review-item">
+                <div class="ri-pic">
+                  <img
+                    src="{% static 'img/room/avatar/avatar-1.jpg' %}"
+                    alt=""
+                  />
+                </div>
+                <div class="ri-text">
+                  <span>27 Th8 2019</span>
+                  <div class="rating">
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star-half_alt"></i>
+                  </div>
+                  <h5>Brandon Kelley</h5>
+                  <p>
+                    Neque porro qui squam est, qui dolorem ipsum quia dolor sit
+                    amet, consectetur, adipisci velit, sed quia non numquam eius
+                    modi tempora. incidunt ut labore et dolore magnam.
+                  </p>
+                </div>
+              </div>
+              <div class="review-item">
+                <div class="ri-pic">
+                  <img
+                    src="{% static 'img/room/avatar/avatar-2.jpg' %}"
+                    alt=""
+                  />
+                </div>
+                <div class="ri-text">
+                  <span>27 Th8 2019</span>
+                  <div class="rating">
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star"></i>
+                    <i class="icon_star-half_alt"></i>
+                  </div>
+                  <h5>Brandon Kelley</h5>
+                  <p>
+                    Neque porro qui squam est, qui dolorem ipsum quia dolor sit
+                    amet, consectetur, adipisci velit, sed quia non numquam eius
+                    modi tempora. incidunt ut labore et dolore magnam.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="review-add">
+              <h4>Thêm Đánh Giá</h4>
+              <form action="#" class="ra-form">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <input type="text" placeholder="Tên*" />
+                  </div>
+                  <div class="col-lg-6">
+                    <input type="email" placeholder="Email*" />
+                  </div>
+                  <div class="col-lg-12">
+                    <div>
+                      <h5>Đánh Giá Của Bạn:</h5>
+                      <div class="rating">
+                        <i class="icon_star"></i>
+                        <i class="icon_star"></i>
+                        <i class="icon_star"></i>
+                        <i class="icon_star"></i>
+                        <i class="icon_star-half_alt"></i>
+                      </div>
+                    </div>
+                    <textarea placeholder="Đánh Giá Của Bạn"></textarea>
+                    <button type="submit">Gửi Ngay</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="room-booking">
+              <h3>Đặt Phòng của Bạn</h3>
+              <form action="#">
+                <div class="check-date">
+                  <label for="date-in">Nhận Phòng:</label>
+                  <input type="text" class="date-input" id="date-in" />
+                  <i class="icon_calendar"></i>
+                </div>
+                <div class="check-date">
+                  <label for="date-out">Trả Phòng:</label>
+                  <input type="text" class="date-input" id="date-out" />
+                  <i class="icon_calendar"></i>
+                </div>
+                <div class="select-option">
+                  <label for="guest">Khách:</label>
+                  <select id="guest">
+                    <option value="1">1 Người</option>
+                    <option value="2">2 Người</option>
+                    <option value="3">3 Người</option>
+                    <option value="4">4 Người</option>
+                  </select>
+                </div>
+                <div class="select-option">
+                  <label for="room">Phòng:</label>
+                  <select id="room">
+                    <option value="1">1 Phòng</option>
+                    <option value="">2 Phòng</option>
+                  </select>
+                </div>
+                <button type="submit">Kiểm Tra Tình Trạng</button>
+              </form>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+    </section>
+    <!-- Kết thúc Phần Chi Tiết Phòng -->
+
+    <!-- Phần Footer -->
+    <footer class="footer-section">
+      <div class="container">
+        <div class="footer-text">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="ft-about">
+                <div class="logo">
+                  <a href="#">
+                    <img src="{% static 'img/footer-logo.png' %}" alt="" />
+                  </a>
+                </div>
+                <p>
+                  Chúng tôi truyền cảm hứng và tiếp cận hàng triệu du khách<br />
+                  trên 90 trang web địa phương
+                </p>
+                <div class="fa-social">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a href="#"><i class="fa fa-youtube-play"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 offset-lg-1">
+              <div class="ft-contact">
+                <h6>Liên Hệ Với Chúng Tôi</h6>
+                <ul>
+                  <li>190067890</li>
+                  <li>Hotel@gmail.com</li>
+                  <li>
+                    Ký túc xá khu B: Đường Mạc Đĩnh Chi, Khu phố Tân Hòa, Phường
+                    Đông Hòa, Thành phố Dĩ An, Tỉnh Bình Dương
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 offset-lg-1">
+              <div class="ft-newslatter">
+                <h6>Tin Mới Nhất</h6>
+                <p>Nhận các cập nhật và ưu đãi mới nhất.</p>
+                <form action="#" class="fn-form">
+                  <input type="email" placeholder="Email" />
+                  <button type="submit"><i class="fa fa-send"></i></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright-option">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7">
+              <ul>
+                <li><a href="#">Liên Hệ</a></li>
+                <li><a href="#">Điều khoản sử dụng</a></li>
+                <li><a href="#">Chính sách bảo mật</a></li>
+                <li><a href="#">Chính sách Môi trường</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-5">
+              <div class="co-text">
+                <p>
+                  Copyright &copy;
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  Tất cả các quyền được bảo lưu | Mẫu này được tạo với
+                  <i class="fa fa-heart" aria-hidden="true"></i> bởi
+                  <a href="https://colorlib.com" target="_blank">TH-TrueMilk</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Kết thúc Phần Footer -->
+
+    <!-- Plugin Js -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/yourbooking.js' %}"></script>
+  </body>
+</html>
