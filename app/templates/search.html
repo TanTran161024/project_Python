@@ -7,7 +7,7 @@
     <meta name="keywords" content="Sona, unica, sáng tạo, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Sona | Mẫu</title>
+    <title>Sona</title>
 
     <!-- Google Font -->
     <link
@@ -177,12 +177,10 @@
               <div class="nav-menu">
                 <nav class="mainmenu">
                   <ul>
-                    <li>
+                    <li class="active">
                       <a href="{% url 'index' %}">Trang Chủ</a>
                     </li>
-                    <li class="active">
-                      <a href="{% url 'rooms' %}">Phòng</a>
-                    </li>
+                    <li><a href="{% url 'rooms' %}">Phòng</a></li>
                     <li><a href="{% url 'promotion' %}">Khuyến Mãi</a></li>
                     <li><a href="{% url 'about-us' %}">Giới thiệu</a></li>
                     <li><a href="{% url 'blog-details' %}">Blog</a></li>
@@ -233,6 +231,8 @@
               </div>
             </div>
           </div>
+          <h4>Tìm kiếm với từ khóa: {{searched}}</h4>
+          <br />
         </div>
       </div>
     </div>
@@ -242,7 +242,7 @@
     <section class="rooms-section spad">
       <div class="container">
         <div class="row">
-          {%for room in rooms%}
+          {%for room in keys%}
           <div class="col-lg-4 col-md-6">
             <div class="room-item">
               <img src="{{room.image.url}}" alt="" />

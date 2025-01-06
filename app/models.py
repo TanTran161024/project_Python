@@ -15,7 +15,6 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username', 'email' ,'first_name' , 'last_name', 'password1', 'password2']
 
-
 class Room(models.Model):
     ROOM_TYPES = (
         ('single', 'Phòng đơn'),
@@ -35,10 +34,10 @@ class Room(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Ngày tạo")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Ngày cập nhật")
 
-    # Phương thức định dạng giá hiển thị
     def formatted_price(self):
         """Hiển thị giá với định dạng 1.000.000 VNĐ"""
         return f"{self.price:,.0f}".replace(",", ".")
+
     class Meta:
         ordering = ['-created_at']
         verbose_name = "Phòng"
@@ -51,39 +50,42 @@ class Room(models.Model):
         """Tính giá tổng cho số đêm ở"""
         return self.price * nights
 
+    def set_booked(self):
+        """Set room status to booked"""
+        self.is_available = False
+        self.save()
+
 class Booking(models.Model):
     STATUS_CHOICES = (
-        ('pending', 'Đang chờ xác nhận'),
+        ('pending', 'Đang chờ xử lý'),
         ('confirmed', 'Đã xác nhận'),
+        ('checked_in', 'Đã nhận phòng'),
+        ('checked_out', 'Đã trả phòng'),
         ('cancelled', 'Đã hủy'),
     )
-    
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings', verbose_name="Người dùng")
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='bookings', verbose_name="Phòng đặt")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Người dùng")
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name="Phòng")
     check_in = models.DateField(verbose_name="Ngày nhận phòng")
     check_out = models.DateField(verbose_name="Ngày trả phòng")
     guests = models.IntegerField(verbose_name="Số lượng khách")
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending', verbose_name="Trạng thái")
-    total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Tổng tiền (VNĐ)")
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Ngày đặt")
+    status = models.CharField(max_length=12, choices=STATUS_CHOICES, default='pending', verbose_name="Trạng thái")
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Tổng giá", null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Ngày tạo")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Ngày cập nhật")
 
-    class Meta:
-        ordering = ['-created_at']
-        verbose_name = "Đặt phòng"
-        verbose_name_plural = "Các đặt phòng"
-
     def __str__(self):
-        return f"Đặt phòng {self.room.name} bởi {self.user.username}"
-    
-    def calculate_total_nights(self):
-        """Tính tổng số đêm ở"""
-        return (self.check_out - self.check_in).days
-    
+        return f"Booking {self.id} - {self.user.username} - {self.room.name}"
+
     def calculate_total_price(self):
-        """Tính tổng giá dựa trên giá phòng và số đêm"""
-        nights = self.calculate_total_nights()
-        return self.room.calculate_price_for_stay(nights)
+        """Tính tổng giá cho số đêm ở"""
+        nights = (self.check_out - self.check_in).days
+        return self.room.price * nights
+
+    def save(self, *args, **kwargs):
+        if not self.total_price:
+            self.total_price = self.calculate_total_price()
+        super().save(*args, **kwargs)
+        self.room.set_booked()
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=200, verbose_name="Tiêu đề")
@@ -131,7 +133,6 @@ class Contact(models.Model):
 from django.db import models
 from ckeditor.fields import RichTextField
 from datetime import date
-
 class Promotion(models.Model):
     code = models.CharField(max_length=50, unique=True, verbose_name="Mã khuyến mãi")
     name = models.CharField(max_length=200, verbose_name="Tên mã khuyến mãi")
@@ -141,6 +142,7 @@ class Promotion(models.Model):
     end_date = models.DateField(verbose_name="Ngày kết thúc")
     is_active = models.BooleanField(default=True, verbose_name="Còn hiệu lực")
     description = RichTextField(verbose_name="Mô tả chi tiết")
+    limit = models.IntegerField(default=-1, verbose_name="Số lượng giới hạn (-1 nếu không giới hạn)")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Ngày tạo")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Ngày cập nhật")
 
@@ -149,4 +151,24 @@ class Promotion(models.Model):
 
     def is_valid(self):
         today = date.today()
-        return self.is_active and self.start_date <= today <= self.end_date
+        return self.is_active and self.start_date <= today <= self.end_date and (self.limit == -1 or self.limit > 0)
+class Bill(models.Model):
+    id = models.AutoField(primary_key=True, verbose_name="Mã hóa đơn")
+    payment_date = models.DateField(auto_now_add=True, verbose_name="Ngày thanh toán")
+    sumary = models.TextField(verbose_name="Thông tin")
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Tổng tiền")
+
+    def formatted_total_amount(self):
+        """Hiển thị giá với định dạng 1.000.000 VNĐ"""
+        return f"{self.total_amount:,.0f}".replace(",", ".")
+
+    class Meta:
+        verbose_name = "Hóa đơn"
+        verbose_name_plural = "Các hóa đơn"
+
+class Service(models.Model):
+    name = models.CharField(max_length=200, verbose_name="Tên dịch vụ")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Giá dịch vụ (VNĐ)")
+
+    def __str__(self):
+        return self.name

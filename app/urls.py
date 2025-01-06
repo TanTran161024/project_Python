@@ -29,4 +29,6 @@ urlpatterns = [
     path('check-in/', views.check_in_view, name='check_in'),
     path('check-out/', views.check_out_view, name='check_out'),
     path('thongkedoanhthu/', views.thongkedoanhthu, name='thongkedoanhthu'),
+    path('search/', views.search, name='search'),
+
 ]
