@@ -50,16 +50,65 @@
               </ul>
             </div>
             <div class="col-lg-6">
-              <div class="tn-right" style="display: {{user_not_login}}">
+              <div class="tn-right" style="display: flex">
                 <div class="top-social">
                   <a href="#"><i class="fa fa-facebook"></i></a>
                   <a href="#"><i class="fa fa-twitter"></i></a>
                   <a href="#"><i class="fa fa-tripadvisor"></i></a>
                   <a href="#"><i class="fa fa-instagram"></i></a>
                 </div>
-                <a href="{% url 'login' %}" class="bk-btn">Đăng Nhập</a>
-                <a href="{% url 'signup' %}" class="bk-btn">Đăng Ký</a>
+                <a
+                  href="{% url 'login' %}"
+                  class="bk-btn"
+                  style="display: {% if not user.is_authenticated %}block{% else %}none{% endif %}; border-radius:50%;width:10px;height:10px"
+                >
+                  <i
+                    class="fa fa-user"
+                    style="
+                      color: #dfa974;
+                      font-size: 30px;
+                      text-align: center;
+                      margin-right: 35%;
+                      position: relative;
+                    "
+                  ></i>
+                  <span
+                    style="
+                      color: #dfa974;
+                      width: 20px;
+                      font-size: 10px;
+                      display: block;
+                    "
+                    >Tài khoản</span
+                  >
+                </a>
+                <a
+                  href="{% url 'manage_room' %}"
+                  class="bk-btn"
+                  style="display: {% if user.is_authenticated %}block{% else %}none{% endif %};font-size:25px;margin-top:-15px;background-color: white;margin-left:220px"
+                >
+                  <i
+                    class="fa fa-user"
+                    style="
+                      color: #dfa974;
+                      font-size: 20px;
+                      text-align: center;
+                      margin-right: 35%;
+                      position: relative;
+                    "
+                  ></i>
+                  <span
+                    style="
+                      color: #dfa974;
+                      font-size: 10px;
+                      display: block;
+                      text-align: center;
+                    "
+                    >Tài khoản</span
+                  >
+                </a>
               </div>
+              {% comment %}
               <div class="tn-right" style="display: {{user_login}}">
                 <div class="top-social">
                   <a href="#"><i class="fa fa-facebook"></i></a>
@@ -70,6 +119,7 @@
                 <span>HELLO! {{request.user}}</span>
                 <a href="{% url 'logout' %}" class="bk-btn">Đăng xuất</a>
               </div>
+              {% endcomment %}
             </div>
           </div>
         </div>
@@ -88,7 +138,7 @@
               <div class="nav-menu">
                 <nav class="mainmenu">
                   <ul>
-                    <li>
+                    <li class="active">
                       <a href="{% url 'index' %}">Trang Chủ</a>
                     </li>
                     <li><a href="{% url 'rooms' %}">Phòng</a></li>
@@ -99,6 +149,28 @@
                     <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
                   </ul>
                 </nav>
+                <div class="container" style="margin-bottom: 10px">
+                  <form method="POST" action="{% url 'search' %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                      <input
+                        type="search"
+                        class="form-control rounded"
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                        name="searched"
+                      />
+                      <button
+                        class="btn btn-outline-secondary"
+                        type="submit"
+                        id="search-addon"
+                      >
+                        <i class="icon_search"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -106,6 +178,7 @@
       </div>
     </header>
     <!-- Kết thúc Phần Header -->
+
     {% comment %} Bắt đầu phần Booking {% endcomment %}
     <div class="container booking">
       <div class="section">
@@ -164,14 +237,12 @@
             <input type="checkbox" id="high-floor" name="high-floor" />
             <label for="high-floor">Dịch Vụ Di Chuyển(300000)</label>
           </div>
-
           <div class="checkbox-item">
             <input type="checkbox" id="check-in-time" name="check-in-time" />
             <label for="check-in-time"
               >Dịch Vụ Giải Trí và Thư Giãn(1200000)</label
             >
           </div>
-
           <div class="checkbox-item">
             <input type="checkbox" id="other" name="other" />
             <label for="other">Dịch Vụ Khác</label>
@@ -183,31 +254,26 @@
         <div class="card shadow-sm">
           <div class="card-body">
             <div class="row">
-              <h2 class="card-title">Thông tin phòng</h2>
-              {%for room in rooms%}
-              <ul class="list-unstyled">
+              <h2 style="width: 1000px" class="card-title">Thông tin phòng</h2>
+
+              <ul class="list-unstyled text-left">
                 <li class="mb-2">
                   <i class="bi bi-check-circle text-success"></i>
-                  <h3>{{ room.name }}</h3>
+                  <h4>Phòng View Biển</h4>
                 </li>
                 <li class="mb-2">
-                  <i class="bi bi-check-circle text-success"></i> Giá phòng: {{
-                  room.formatted_price }}đ
+                  <i class="bi bi-check-circle text-success"></i> Giá phòng:
+                  150.000đ
                 </li>
                 <li class="mb-2">
                   <i class="bi bi-check-circle text-success"></i> Sức chứa: Tối
-                  đa {{ room.capacity }} người
+                  đa 3 người
                 </li>
                 <li class="mb-2">
-                  <i class="bi bi-check-circle text-success"></i> Diện tích: {{
-                  room.size }} m²
-                </li>
-                <li class="mb-2">
-                  <i class="bi bi-check-circle text-success"></i> Loại phòng:{{
-                  room.room_type }}
+                  <i class="bi bi-check-circle text-success"></i> Diện tích: 45
+                  m²
                 </li>
               </ul>
-              {%endfor%}
             </div>
           </div>
         </div>
@@ -215,12 +281,152 @@
 
       <div class="section summary">
         <h2>Chi tiết giá</h2>
-        <div>Giá phòng: <span>236.296 VNĐ</span></div>
-        <div>Thuế và phí: <span>31.664 VNĐ</span></div>
-        <div class="total">Tổng giá: 267.960 VNĐ</div>
+        <div>Giá phòng: <span id="room-price">150.000 đ</span></div>
+        <div>Thuế và phí: <span id="tax-fee">31.664 VNĐ</span></div>
+        <div>Tổng giá: <span id="total-price">267.960 VNĐ</span></div>
+        <div id="discount-amount">Voucher: 0 VNĐ</div>
+        <div class="total">
+          <span id="final-price">Thành tiền: 449.624 VNĐ</span>
+        </div>
+        <div class="voucher-section">
+          <input type="text" id="voucher-code" placeholder="Nhập mã voucher" />
+          <button
+            id="apply-voucher"
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#voucherModal"
+          >
+            Áp dụng voucher
+          </button>
+        </div>
+
+        <div id="voucherModal" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Chọn voucher</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="voucher-list-container"></div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Đóng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="submit-btn">Tiếp tục thanh toán</button>
+
+        <!-- Modal tóm tắt đơn hàng -->
+        <div id="summary-modal" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Tóm tắt đơn hàng</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="booking-summary"></div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  id="edit-info"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Chọn lại
+                </button>
+                <button
+                  type="button"
+                  id="continue-payment"
+                  class="btn btn-primary"
+                >
+                  Tiếp tục
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal chọn phương thức thanh toán -->
+        <div id="payment-modal" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Phương thức thanh toán</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Vui lòng chọn phương thức thanh toán:</p>
+                <div>
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    value="credit_card"
+                    id="credit-card"
+                  />
+                  <label for="credit-card">Thẻ tín dụng</label><br />
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    value="paypal"
+                    id="paypal"
+                  />
+                  <label for="paypal">PayPal</label><br />
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    value="bank_transfer"
+                    id="bank-transfer"
+                  />
+                  <label for="bank-transfer">Chuyển khoản ngân hàng</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  id="confirm-payment"
+                  class="btn btn-success"
+                >
+                  Xác nhận thanh toán
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <button class="submit-btn">Tiếp tục thanh toán</button>
     </div>
+
     <!-- Phần Footer Bắt Đầu -->
     <footer class="footer-section">
       <div class="container">
@@ -234,7 +440,8 @@
                   </a>
                 </div>
                 <p>
-                  Chúng tôi truyền cảm hứng và tiếp cận hàng triệu du khách<br />
+                  Chúng tôi truyền cảm hứng và tiếp cận hàng triệu du khách
+                  <br />
                   trên 90 trang web địa phương
                 </p>
                 <div class="fa-social">
@@ -301,6 +508,7 @@
       </div>
     </footer>
     <!-- Kết thúc Phần Footer -->
+
     <!-- Js Plugins -->
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -310,5 +518,6 @@
     <script src="{% static 'js/jquery.slicknav.js' %}"></script>
     <script src="{% static 'js/owl.carousel.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/booking.js' %}"></script>
   </body>
 </html>

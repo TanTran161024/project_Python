@@ -83,8 +83,8 @@
     <div id="preloder">
       <div class="loader"></div>
     </div>
-    <!-- Phần Header -->
-    <header class="header-section header-normal">
+    <!-- Phần Header Bắt Đầu -->
+    <header class="header-section">
       <div class="top-nav">
         <div class="container">
           <div class="row">
@@ -95,26 +95,76 @@
               </ul>
             </div>
             <div class="col-lg-6">
-              <div class="tn-right"style = "display: {{user_not_login}}">
+              <div class="tn-right" style="display: flex">
                 <div class="top-social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
                 </div>
-                <a href="{% url 'login' %}" class="bk-btn">Đăng Nhập</a>
-                <a href="{% url 'signup' %}" class="bk-btn">Đăng Ký</a>
-            </div>
-            <div class="tn-right"style = "display: {{user_login}}">
+                <a
+                  href="{% url 'login' %}"
+                  class="bk-btn"
+                  style="display: {% if not user.is_authenticated %}block{% else %}none{% endif %}; border-radius:50%;width:10px;height:10px"
+                >
+                  <i
+                    class="fa fa-user"
+                    style="
+                      color: #dfa974;
+                      font-size: 30px;
+                      text-align: center;
+                      margin-right: 35%;
+                      position: relative;
+                    "
+                  ></i>
+                  <span
+                    style="
+                      color: #dfa974;
+                      width: 20px;
+                      font-size: 10px;
+                      display: block;
+                    "
+                    >Tài khoản</span
+                  >
+                </a>
+                <a
+                  href="{% url 'manage_room' %}"
+                  class="bk-btn"
+                  style="display: {% if user.is_authenticated %}block{% else %}none{% endif %};font-size:25px;margin-top:-15px;background-color: white;margin-left:220px"
+                >
+                  <i
+                    class="fa fa-user"
+                    style="
+                      color: #dfa974;
+                      font-size: 20px;
+                      text-align: center;
+                      margin-right: 35%;
+                      position: relative;
+                    "
+                  ></i>
+                  <span
+                    style="
+                      color: #dfa974;
+                      font-size: 10px;
+                      display: block;
+                      text-align: center;
+                    "
+                    >Tài khoản</span
+                  >
+                </a>
+              </div>
+              {% comment %}
+              <div class="tn-right" style="display: {{user_login}}">
                 <div class="top-social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
                 </div>
                 <span>HELLO! {{request.user}}</span>
                 <a href="{% url 'logout' %}" class="bk-btn">Đăng xuất</a>
-            </div>
+              </div>
+              {% endcomment %}
             </div>
           </div>
         </div>
@@ -133,34 +183,38 @@
               <div class="nav-menu">
                 <nav class="mainmenu">
                   <ul>
-                    <li><a href="{% url 'index' %}">Trang Chủ</a></li>
+                    <li>
+                      <a href="{% url 'index' %}">Trang Chủ</a>
+                    </li>
                     <li><a href="{% url 'rooms' %}">Phòng</a></li>
-                    <li class="active">
-                      <a href="{% url 'promotion' %}">Khuyến Mãi</a>
-                    </li>
-                    <li >
-                      <a href="{% url 'about-us' %}">Giới Thiệu</a>
-                    </li>
+                    <li class="active"><a href="{% url 'promotion' %}">Khuyến Mãi</a></li>
+                    <li><a href="{% url 'about-us' %}">Giới thiệu</a></li>
                     <li><a href="{% url 'blog-details' %}">Blog</a></li>
                     <li><a href="{% url 'blog' %}">Tin Tức</a></li>
                     <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
                   </ul>
                 </nav>
                 <div class="container" style="margin-bottom: 10px">
-                  <div class="input-group">
-                    <input
-                      type="search"
-                      class="form-control rounded"
-                      placeholder="Search"
-                      aria-label="Search"
-                      aria-describedby="search-addon"
-                    />
-                    <div class="input-group-append">
-                      <span class="input-group-text" id="search-addon">
+                  <form method="POST" action="{% url 'search' %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                      <input
+                        type="search"
+                        class="form-control rounded"
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                        name="searched"
+                      />
+                      <button
+                        class="btn btn-outline-secondary"
+                        type="submit"
+                        id="search-addon"
+                      >
                         <i class="icon_search"></i>
-                      </span>
+                      </button>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -168,7 +222,7 @@
         </div>
       </div>
     </header>
-    <!-- Kết Thúc Phần Header -->
+    <!-- Kết thúc Phần Header -->
 
     <!-- Phần Breadcrumb -->
     <div class="breadcrumb-section">
